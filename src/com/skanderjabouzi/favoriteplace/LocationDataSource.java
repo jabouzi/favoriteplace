@@ -1,4 +1,4 @@
-package com.skanderjabouzi.salat;
+package com.skanderjabouzi.favoriteplace;
 
 import java.util.ArrayList;
 import java.util.List;

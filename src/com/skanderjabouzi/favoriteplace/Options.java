@@ -1,4 +1,4 @@
-package com.skanderjabouzi.salat;
+package com.skanderjabouzi.favoriteplace;
 
 public class Options {
 

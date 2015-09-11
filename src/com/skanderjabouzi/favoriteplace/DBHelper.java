@@ -1,4 +1,4 @@
-package com.skanderjabouzi.salat;
+package com.skanderjabouzi.favoriteplace;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

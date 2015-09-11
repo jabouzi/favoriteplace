@@ -1,4 +1,4 @@
-package com.skanderjabouzi.salat;
+package com.skanderjabouzi.favoriteplace;
 
 import java.io.BufferedReader;
 import java.io.IOException;

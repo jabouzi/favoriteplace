@@ -1,4 +1,4 @@
-package com.skanderjabouzi.salat;
+package com.skanderjabouzi.favoriteplace;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,7 +26,7 @@ import android.provider.Settings;
 
 public class SettingsActivity extends Activity implements OnItemSelectedListener{
 
-	static final String SEND_LOCATION_NOTIFICATIONS = "com.skanderjabouzi.salat.SEND_LOCATION_NOTIFICATIONS";
+	static final String SEND_LOCATION_NOTIFICATIONS = "com.skanderjabouzi.favoriteplace.SEND_LOCATION_NOTIFICATIONS";
 	private Spinner method, asr, hijri, autoLocation, adhan;
 	private EditText latitude, longitude, timezone, city, country;
 	private Button btnsaveSettings, btnDetectLocation;

@@ -1,4 +1,4 @@
-package com.skanderjabouzi.salat;
+package com.skanderjabouzi.favoriteplace;
 
 import android.view.View;
 import android.view.MotionEvent;
@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 public class SalatActivity extends Activity {
 
-	static final String SEND_SALATTIME_NOTIFICATIONS = "com.skanderjabouzi.salat.SEND_SALATTIME_NOTIFICATIONS";
+	static final String SEND_SALATTIME_NOTIFICATIONS = "com.skanderjabouzi.favoriteplace.SEND_SALATTIME_NOTIFICATIONS";
 	String sataTimes[] = new String[7];
 	String[] hijriDates = new String[4];
 	SalatApplication salatApp;
