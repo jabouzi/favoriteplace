@@ -35,7 +35,6 @@ public class SettingsActivity extends Activity implements OnItemSelectedListener
 	private int pos = 0;
 	private LocationDataSource ldatasource;
 	private Location location;
-	private SalatApplication salatApp;
 	private Context context = SettingsActivity.this;
 	private Intent locationIntent;
     LocationReceiver receiver;
@@ -47,7 +46,6 @@ public class SettingsActivity extends Activity implements OnItemSelectedListener
         setContentView(R.layout.settings);
         receiver = new LocationReceiver();
         filter = new IntentFilter( LocationService.LOCATION_INTENT );
-        salatApp = SalatApplication.getInstance(this);
         locationIntent = new Intent(this, LocationService.class);
         odatasource = new OptionsDataSource(this);
 		odatasource.open();
@@ -191,7 +189,6 @@ public class SettingsActivity extends Activity implements OnItemSelectedListener
 
 				ldatasource.updateLocation(location);
 				
-				salatApp.setAlarm(context, "Settings");
 				finish();
 			}
 

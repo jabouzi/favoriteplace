@@ -25,27 +25,27 @@ public class CoverActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.cover);
 		coverView = findViewById(R.id.coverView);
 
 		onSwipeTouchListener = new OnSwipeTouchListener(this) {
 			public void onSwipeTop() {
-				//Toast.makeText(CoverAvtivity.this, "top", Toast.LENGTH_SHORT).show();
+				//Toast.makeText(CoverActivity.this, "top", Toast.LENGTH_SHORT).show();
 			}
 			public void onSwipeRight() {
-				//Toast.makeText(CoverAvtivity.this, "right", Toast.LENGTH_SHORT).show();
-				CoverAvtivity.this.startActivity(new Intent(CoverAvtivity.this, DialAvtivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-				CoverAvtivity.this.finish();
-				CoverAvtivity.this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+				//Toast.makeText(CoverActivity.this, "right", Toast.LENGTH_SHORT).show();
+				CoverActivity.this.startActivity(new Intent(CoverActivity.this, DialActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+				CoverActivity.this.finish();
+				CoverActivity.this.overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_down);
 			}
 			public void onSwipeLeft() {
-				//Toast.makeText(CoverAvtivity.this, "left", Toast.LENGTH_SHORT).show();
-				CoverAvtivity.this.startActivity(new Intent(CoverAvtivity.this, DialAvtivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-				CoverAvtivity.this.finish();
-				CoverAvtivity.this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+				//Toast.makeText(CoverActivity.this, "left", Toast.LENGTH_SHORT).show();
+				CoverActivity.this.startActivity(new Intent(CoverActivity.this, DialActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+				CoverActivity.this.finish();
+				CoverActivity.this.overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
 			}
 			public void onSwipeBottom() {
-				//Toast.makeText(CoverAvtivity.this, "bottom", Toast.LENGTH_SHORT).show();
+				//Toast.makeText(CoverActivity.this, "bottom", Toast.LENGTH_SHORT).show();
 			}
 		};
 		coverView.setOnTouchListener(onSwipeTouchListener);
@@ -87,16 +87,8 @@ public class CoverActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 	  switch (item.getItemId()) {
-	  case R.id.hijri:
-		startActivity(new Intent(this, HijriActivity.class)
-			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-		break;
 	  case R.id.settings:
 		startActivity(new Intent(this, SettingsActivity.class)
-			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-		break;
-	  case R.id.qibla:
-		startActivity(new Intent(this, coverQibla.class)
 			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 		break;
 	  case R.id.about:

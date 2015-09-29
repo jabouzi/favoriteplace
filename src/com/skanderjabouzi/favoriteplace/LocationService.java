@@ -52,7 +52,6 @@ public class LocationService extends Service implements LocationListener{
 	private int mInterval = 5000;
 	private final Handler mHandler = new Handler();
 	private Runnable mUpdateTimeTask;
-	SalatApplication salatApp;
 	private LocationDataSource ldatasource;
 	private com.skanderjabouzi.favoriteplace.Location salatLocation;
 	int saveLocation = 0;
@@ -71,7 +70,6 @@ public class LocationService extends Service implements LocationListener{
 		receiverSource = intent.getStringExtra("SOURCE");
 		Log.i(TAG,"SOURCE : " + receiverSource);
 		Log.d(TAG, String.valueOf(getTimeZone()));
-		salatApp = SalatApplication.getInstance(context);
 			mUpdateTimeTask = new Runnable() {
 				public void run() {
 					Log.i(TAG,"runService : " + runService);
@@ -92,7 +90,6 @@ public class LocationService extends Service implements LocationListener{
 		{
 			ldatasource.updateTimeZoneLocation(getTimeZone());
 			Log.i(TAG,"SAVE_TIMEZONE_LOCATION 1");
-			SalatApplication.setAlarm(this, "Location");
 		}
 
 		try {
@@ -209,7 +206,6 @@ public class LocationService extends Service implements LocationListener{
 					salatLocation.setCity(City);
 					salatLocation.setCountry(Country);
 					ldatasource.updateLocation(salatLocation);
-					SalatApplication.setAlarm(this, "Location");
 					Log.i(TAG,"SAVE_LOCATION");
 				}
 				sendNotification(locationValues);

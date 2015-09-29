@@ -3,13 +3,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" 
-    android:id="@+id/qibla_bg" >
+    android:id="@+id/dialView" >
     
    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent">
         <ImageView
-        android:id="@+id/compass"
+        android:id="@+id/dial"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
