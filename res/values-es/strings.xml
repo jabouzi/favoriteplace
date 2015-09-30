@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Salat</string>
+    <string name="app_name">Place favoris</string>
     <string name="date1">00 00 0000</string>
     <string name="date2">00 00 0000</string>
     <string name="fajr">00:00</string>
@@ -65,16 +65,16 @@
     <string name="stopadhan">Detener adhan</string>
     <string name="about">Sobre esta app</string>
     <string name="autoDetectLocation">Auto Detect Location</string>
-
-    <string-array name="calculation">
+    
+<string-array name="calculation">
         <item>Ithna Ashari</item>
-        <item>Universidad de Ciencias Islámicas, Karachi</item>
-        <item>Sociedad Islámica de Norteamérica (ISNA)</item>
-        <item>Liga Musulmana Mundial (MWL)</item>
-        <item>Umm al-Qura, Meca</item>
-        <item>Autoridad General Egipcia</item>
-        <item>Instituto de Geofísica de la Universidad de Teherán</item>
-        <item>Configuración personalizada</item>
+        <item>University of Islamic Sciences, Karachi</item>
+        <item>Islamic Society of North America (ISNA)</item>
+        <item>Muslim World League (MWL)</item>
+        <item>Umm al-Qura, Makkah</item>
+        <item>Egyptian General Authority of Survey</item>
+        <item>Institute of Geophysics, University of Tehran</item>
+        <item>Custom Setting</item>
     </string-array>
 
     <string-array name="calculationValues">
@@ -99,11 +99,11 @@
     </string-array>
 
     <string-array name="hijri">
-        <item>+ 0 día</item>
-        <item>+ 1 día</item>
-        <item>+ 2 días</item>
-        <item>- 1 día</item>
-        <item>- 2 días</item>
+        <item>+ 0 day</item>
+        <item>+ 1 day</item>
+        <item>+ 2 days</item>
+        <item>- 1 day</item>
+        <item>- 2 days</item>
     </string-array>
 
     <string-array name="hijriValues">
@@ -115,10 +115,10 @@
     </string-array>
 
     <string-array name="highLatitudes">
-        <item>No ajuste</item>
-        <item>Medio de la noche</item>
-        <item>1/7 de la noche</item>
-        <item>Ángulo / 60 º de noche</item>
+        <item>No adjustment</item>
+        <item>middle of night</item>
+        <item>1/7th of night</item>
+        <item>angle/60th of night</item>
     </string-array>
 
     <string-array name="highLatitudesValues">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">الصلاة</string>
+    <string name="app_name">Place favoris</string>
     <string name="date1">00 00 0000</string>
     <string name="date2">00 00 0000</string>
     <string name="fajr">00:00</string>
@@ -66,82 +66,6 @@
     <string name="about">حول هذا التطبيق</string>
     <string name="autoDetectLocation">Auto Detect Location</string>
 
-    <string-array name="calculation">
-        <item>الاثني عشرية</item>
-        <item>جامعة العلوم الإسلامية كراتشي</item>
-        <item>الجمعية الإسلامية لأمريكا الشمالية</item>
-        <item>رابطة العالم الإسلامي</item>
-        <item>أم القرى، مكة المكرمة</item>
-        <item>الهيئة العامة المصرية</item>
-        <item>معهد الجيوفيزياء بجامعة طهران</item>
-        <item>إعداد مخصص</item>
-    </string-array>
-
-    <string-array name="calculationValues">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-    </string-array>
-
-    <string-array name="asr">
-        <item>شافعي</item>
-        <item>حنفي</item>
-    </string-array>
-
-    <string-array name="asrValues">
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-
-    <string-array name="hijri">
-        <item>+ 0 يوم</item>
-        <item>+ 1 يوم</item>
-        <item>+ 2 يوم</item>
-        <item>- 1 يوم</item>
-        <item>- 2 يوم</item>
-    </string-array>
-
-    <string-array name="hijriValues">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-    </string-array>
-
-    <string-array name="highLatitudes">
-        <item>لا تعديل</item>
-        <item>منتصف الليل</item>
-        <item>1/7 ليلة</item>
-        <item>زاوية / 60 ليلة</item>
-    </string-array>
-
-    <string-array name="highLatitudesValues">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    
-    <string-array name="adhanOptions">
-        <item>Play video only</item>
-        <item>Vibrate only</item>
-        <item>Play video and vibrate</item>
-        <item>No adhan</item>
-    </string-array>
-
-    <string-array name="adhanOptionsValues">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    
     <string-array name="autoLocation">
         <item>Yes</item>
         <item>No</item>

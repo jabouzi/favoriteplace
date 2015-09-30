@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:src="@drawable/dial" />
         <ImageView
-        android:id="@+id/compass2"
+        android:id="@+id/dial2"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_gravity="center"
@@ -42,7 +42,7 @@
 			</TextView>
 			<TextView android:layout_width="wrap_content"
 			  android:layout_height="wrap_content"
-			  android:id="@+id/compass_degree_title">
+			  android:id="@+id/dial_degree_title">
 		   </TextView>
         </LinearLayout>
 
@@ -77,7 +77,7 @@
 			  android:shadowDx="1"
 			  android:shadowDy="1"
 			  android:shadowRadius="1"
-			  android:id="@+id/compass_degree">
+			  android:id="@+id/dial_degree">
 		   </TextView>
         </LinearLayout>
     </LinearLayout>

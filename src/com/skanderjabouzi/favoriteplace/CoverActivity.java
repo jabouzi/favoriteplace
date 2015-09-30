@@ -31,18 +31,15 @@ public class CoverActivity extends Activity {
 		onSwipeTouchListener = new OnSwipeTouchListener(this) {
 			public void onSwipeTop() {
 				//Toast.makeText(CoverActivity.this, "top", Toast.LENGTH_SHORT).show();
-			}
-			public void onSwipeRight() {
-				//Toast.makeText(CoverActivity.this, "right", Toast.LENGTH_SHORT).show();
-				CoverActivity.this.startActivity(new Intent(CoverActivity.this, DialActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-				CoverActivity.this.finish();
-				CoverActivity.this.overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_down);
-			}
-			public void onSwipeLeft() {
-				//Toast.makeText(CoverActivity.this, "left", Toast.LENGTH_SHORT).show();
 				CoverActivity.this.startActivity(new Intent(CoverActivity.this, DialActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 				CoverActivity.this.finish();
 				CoverActivity.this.overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
+			}
+			public void onSwipeRight() {
+				//Toast.makeText(CoverActivity.this, "right", Toast.LENGTH_SHORT).show();
+			}
+			public void onSwipeLeft() {
+				//Toast.makeText(CoverActivity.this, "left", Toast.LENGTH_SHORT).show();
 			}
 			public void onSwipeBottom() {
 				//Toast.makeText(CoverActivity.this, "bottom", Toast.LENGTH_SHORT).show();
