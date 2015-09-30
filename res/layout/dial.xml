@@ -9,6 +9,12 @@
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent">
         <ImageView
+        android:id="@+id/cover"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:src="@drawable/cover" />
+        <ImageView
         android:id="@+id/dial"
         android:layout_width="300dp"
         android:layout_height="300dp"
