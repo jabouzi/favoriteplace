@@ -16,6 +16,9 @@ import android.text.Html;
 import android.util.Log;
 import android.content.Context;
 import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class DialActivity extends Activity implements SensorEventListener {
 
@@ -171,5 +174,28 @@ public class DialActivity extends Activity implements SensorEventListener {
 		}
 		if (dial_angle > 360f) dial_angle = dial_angle - 360f;    
 		return dial_angle;        
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	  getMenuInflater().inflate(R.menu.menu, menu);
+	  return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+	  switch (item.getItemId()) {
+	  case R.id.settings:
+		startActivity(new Intent(this, SettingsActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+		break;
+	  case R.id.about:
+		AboutDialog about = new AboutDialog(this);
+		about.setTitle(this.getString(R.string.about));
+		about.show();
+		break;
+	  }
+	  return true;
 	}
 }
