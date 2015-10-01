@@ -70,15 +70,15 @@ public class LocationService extends Service implements LocationListener{
 		receiverSource = intent.getStringExtra("SOURCE");
 		Log.i(TAG,"SOURCE : " + receiverSource);
 		Log.d(TAG, String.valueOf(getTimeZone()));
-			mUpdateTimeTask = new Runnable() {
-				public void run() {
-					Log.i(TAG,"runService : " + runService);
-					getLocation();
-					if (runService)	mHandler.postDelayed (mUpdateTimeTask, mInterval);
-				}
-			};
-			mHandler.removeCallbacks(mUpdateTimeTask);
-			if (runService)	mHandler.postDelayed(mUpdateTimeTask, 100);
+		mUpdateTimeTask = new Runnable() {
+			public void run() {
+				Log.i(TAG,"runService : " + runService);
+				getLocation();
+				if (runService)	mHandler.postDelayed (mUpdateTimeTask, mInterval);
+			}
+		};
+		mHandler.removeCallbacks(mUpdateTimeTask);
+		if (runService)	mHandler.postDelayed(mUpdateTimeTask, 100);
 		
 
 		return super.onStartCommand(intent, flags, startId);
@@ -150,6 +150,8 @@ public class LocationService extends Service implements LocationListener{
 		{
 			latitude = location.getLatitude();
 			longitude = location.getLongitude();
+			Log.i(TAG,"LAT : "+latitude);
+			Log.i(TAG,"LON : "+longitude);
 			
 			JSONObject jsonObj = null;
 			String str = "";
