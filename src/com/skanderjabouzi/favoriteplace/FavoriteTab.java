@@ -28,27 +28,27 @@ public class FavoriteTab extends Fragment{
 	
 	static final String SEND_LOCATION_NOTIFICATIONS = "com.skanderjabouzi.favoriteplace.SEND_LOCATION_NOTIFICATIONS";
 	private EditText latitude, longitude, city, country;
-	private Button btnsaveSettings, btnDetectLocation;
+	private Button btnsaveSettings, btnDetectFavorite;
 	private int pos = 0;
-	private LocationDataSource ldatasource;
-	private Location location;
+	private FavoriteDataSource fdatasource;
+	private Favorite favorite;
 	private Context context = getActivity();
-	private Intent locationIntent;
-    LocationReceiver receiver;
+	private Intent favoriteIntent;
+    FavoriteReceiver receiver;
     IntentFilter filter;
     View rootView;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-		rootView = inflater.inflate(R.layout.location, container, false);
-		receiver = new LocationReceiver();
+		rootView = inflater.inflate(R.layout.favorite, container, false);
+		receiver = new FavoriteReceiver();
         filter = new IntentFilter( LocationService.LOCATION_INTENT );
-        locationIntent = new Intent(getActivity(), LocationService.class);
-        ldatasource = new LocationDataSource(getActivity());
-		ldatasource.open();
-		location = ldatasource.getLocation(1);
-		setLocationTexts();
+        favoriteIntent = new Intent(getActivity(), LocationService.class);
+        fdatasource = new FavoriteDataSource(getActivity());
+		fdatasource.open();
+		favorite = fdatasource.getFavorite(1);
+		setFavoriteTexts();
 		addListenerOnButton();
         
         return rootView;
@@ -58,7 +58,7 @@ public class FavoriteTab extends Fragment{
     public void onResume() {
         super.onResume();
         getActivity().registerReceiver(receiver, filter, SEND_LOCATION_NOTIFICATIONS, null);
-        ldatasource.open();
+        fdatasource.open();
     }
 
     @Override
@@ -68,7 +68,7 @@ public class FavoriteTab extends Fragment{
 			getActivity().unregisterReceiver(receiver);
 			receiver = null;
 		}
-        ldatasource.close();
+        fdatasource.close();
     }
     
     @Override
@@ -78,7 +78,7 @@ public class FavoriteTab extends Fragment{
 			getActivity().unregisterReceiver(receiver);
 			receiver = null;
 		}
-        ldatasource.close();
+        fdatasource.close();
     }
     
 	@Override
@@ -88,19 +88,19 @@ public class FavoriteTab extends Fragment{
 			getActivity().unregisterReceiver(receiver);
 			receiver = null;
 		}
-        ldatasource.close();
+        fdatasource.close();
     }
 
-    public void setLocationTexts() {
+    public void setFavoriteTexts() {
 		
 		latitude = (EditText) rootView.findViewById(R.id.latitude);
-		latitude.setText(fmt(location.getLatitude()));
+		latitude.setText(fmt(favorite.getLatitude()));
 		longitude = (EditText) rootView.findViewById(R.id.longitude);
-		longitude.setText(fmt(location.getLongitude()));		
+		longitude.setText(fmt(favorite.getLongitude()));		
 		city = (EditText) rootView.findViewById(R.id.city);
-		city.setText(location.getCity());
+		city.setText(favorite.getCity());
 		country = (EditText) rootView.findViewById(R.id.country);
-		country.setText(location.getCountry());
+		country.setText(favorite.getCountry());
 	}
 
     public void addListenerOnButton() {
@@ -111,28 +111,28 @@ public class FavoriteTab extends Fragment{
 			@Override
 			public void onClick(View v) {
 		
-				location.setId(1);
+				favorite.setId(1);
 				latitude = (EditText) rootView.findViewById(R.id.latitude);
-				location.setLatitude(Float.parseFloat(String.valueOf(latitude.getText())));
+				favorite.setLatitude(Float.parseFloat(String.valueOf(latitude.getText())));
 
 				longitude = (EditText) rootView.findViewById(R.id.longitude);
-				location.setLongitude(Float.parseFloat(String.valueOf(longitude.getText())));
+				favorite.setLongitude(Float.parseFloat(String.valueOf(longitude.getText())));
 
 				city = (EditText) rootView.findViewById(R.id.city);
-				location.setCity(String.valueOf(city.getText()));
+				favorite.setCity(String.valueOf(city.getText()));
 
 				country = (EditText) rootView.findViewById(R.id.country);
-				location.setCountry(String.valueOf(country.getText()));
+				favorite.setCountry(String.valueOf(country.getText()));
 
-				ldatasource.updateLocation(location);
+				fdatasource.updateFavorite(favorite);
 				
 				getActivity().finish();
 			}
 
 		});
 		
-		btnDetectLocation = (Button) rootView.findViewById(R.id.detectLocation);
-		btnDetectLocation.setOnClickListener(new OnClickListener() {
+		btnDetectFavorite = (Button) rootView.findViewById(R.id.detectFavorite);
+		btnDetectFavorite.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -170,7 +170,7 @@ public class FavoriteTab extends Fragment{
 			return String.valueOf(d);
 	}
 	
-	class LocationReceiver extends BroadcastReceiver {
+	class FavoriteReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             String extraString = intent.getStringExtra("LOCATION");
@@ -184,12 +184,12 @@ public class FavoriteTab extends Fragment{
 			}
 			else
 			{
-				String[] geolocation = extraString.split("\\|");
-				location.setLatitude(Float.parseFloat(geolocation[0]));
-				location.setLongitude(Float.parseFloat(geolocation[1]));
-				location.setCity(geolocation[2]);
-				location.setCountry(geolocation[3]);
-				setLocationTexts();
+				String[] geofavorite = extraString.split("\\|");
+				favorite.setLatitude(Float.parseFloat(geofavorite[0]));
+				favorite.setLongitude(Float.parseFloat(geofavorite[1]));
+				favorite.setCity(geofavorite[2]);
+				favorite.setCountry(geofavorite[3]);
+				setFavoriteTexts();
 			}
         }
     }
