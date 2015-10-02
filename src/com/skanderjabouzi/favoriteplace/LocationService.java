@@ -18,16 +18,21 @@ import java.io.IOException;
 import android.app.Service;
 import java.util.List;
 import java.io.IOException;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+//import org.apache.http.HttpResponse;
+//import org.apache.http.client.ClientProtocolException;
+//import org.apache.http.client.HttpClient;
+//import org.apache.http.client.methods.HttpPost;
+//import org.apache.http.impl.client.DefaultHttpClient;
+//import org.apache.http.util.EntityUtils;
+//import org.json.JSONArray;
+//import org.json.JSONException;
+//import org.json.JSONObject;
 import android.os.Handler;
+import android.location.Address;
+import android.location.Geocoder;
+import java.util.Arrays;
+import android.widget.Toast;
+
 
 
 public class LocationService extends Service implements LocationListener{
@@ -153,77 +158,70 @@ public class LocationService extends Service implements LocationListener{
 			Log.i(TAG,"LAT : "+latitude);
 			Log.i(TAG,"LON : "+longitude);
 			
-			JSONObject jsonObj = null;
-			String str = "";
-			HttpResponse response;
-			HttpClient myClient = new DefaultHttpClient();
-			HttpPost myConnection = new HttpPost("http://maps.google.com/maps/api/geocode/json?sensor=false&latlng="+latitude+","+longitude);
+			Geocoder geocoder= new Geocoder(this, Locale.ENGLISH);
+		
 			try {
-				response = myClient.execute(myConnection);
-				str = EntityUtils.toString(response.getEntity(), "UTF-8");
-				jsonObj = new JSONObject(str);
-				String Status = jsonObj.getString("status");
-				if (Status.equalsIgnoreCase("OK")) {
-					JSONArray Results = jsonObj.getJSONArray("results");
-					JSONObject zero = Results.getJSONObject(0);
-					JSONArray address_components = zero.getJSONArray("address_components");
-
-					for (int i = 0; i < address_components.length(); i++) {
-						JSONObject zero2 = address_components.getJSONObject(i);
-						String long_name = zero2.getString("long_name");
-						JSONArray mtypes = zero2.getJSONArray("types");
-						String Type = mtypes.getString(0);                    
-						if (Type.equalsIgnoreCase("street_number")) {
-							Address1 = long_name + " ";
-						} else if (Type.equalsIgnoreCase("route")) {
-							Address1 = Address1 + long_name;
-						} else if (Type.equalsIgnoreCase("sublocality")) {
-							Address2 = long_name;
-						} else if (Type.equalsIgnoreCase("locality")) {
-							City = long_name;
-						} else if (Type.equalsIgnoreCase("administrative_area_level_2")) {
-							County = long_name;
-						} else if (Type.equalsIgnoreCase("administrative_area_level_1")) {
-							State = long_name;
-						} else if (Type.equalsIgnoreCase("country")) {
-							Country = long_name;
-						} else if (Type.equalsIgnoreCase("postal_code")) {
-							PIN = long_name;
-						}
-					}
-				}
+        	  
+			  //Place your latitude and longitude
+			  List<Address> addresses = geocoder.getFromLocation(latitude,longitude, 1);
+			  if(addresses != null && !addresses.isEmpty()) {
+				  Log.i("GEOLOC", java.util.Arrays.asList(addresses.toArray()).toString());
+				  if ( addresses.get(0).getLocality() != null) Log.i("CITY", addresses.get(0).getLocality());
+				  if ( addresses.get(0).getCountryName() != null) Log.i("COUN", addresses.get(0).getCountryName());
+				  if ( addresses.get(0).getAdminArea() != null) Log.i("ADMI", addresses.get(0).getAdminArea());
+				  if ( addresses.get(0).getAddressLine(0) != null) Log.i("ADR1", addresses.get(0).getAddressLine(0));
+				  if ( addresses.get(0).getAddressLine(1) != null) Log.i("ADR2", addresses.get(0).getAddressLine(1));
+			  }
+        	 
+        	  //if(addresses != null && !addresses.isEmpty()) {
+        	  
+        		  //Address fetchedAddress = addresses.get(0);
+        		  //StringBuilder strAddress = new StringBuilder();
+        	   
+        		  //for(int i=0; i<fetchedAddress.getMaxAddressLineIndex(); i++) {
+        			  	//strAddress.append(fetchedAddress.getAddressLine(i)).append("\n");
+        		  //}
+        	   
+        		  //Log.i("GEOLOC", "I am at: " +strAddress.toString());
+        	  
+        	  //}
+        	  
+        	  else
+        		  Log.i("GEOLOC","No location found..!");
+         
+        
 				
-				String locationValues = String.valueOf(location.getLatitude());
-				locationValues += "|" + String.valueOf(location.getLongitude());
-				locationValues += "|" + String.valueOf(getTimeZone());
-				locationValues += "|" + City;
-				locationValues += "|" + Country;
-				if (saveLocation == 1 && receiverSource.equals("NETWORK") )
-				{
-					salatLocation = new com.skanderjabouzi.favoriteplace.Location();
-					salatLocation.setId(1);
-					salatLocation.setLatitude((float)location.getLatitude());
-					salatLocation.setLongitude((float)location.getLongitude());
-					salatLocation.setTimezone(getTimeZone());
-					salatLocation.setCity(City);
-					salatLocation.setCountry(Country);
-					ldatasource.updateLocation(salatLocation);
-					Log.i(TAG,"SAVE_LOCATION");
-				}
-				sendNotification(locationValues);
+				//String locationValues = String.valueOf(location.getLatitude());
+				//locationValues += "|" + String.valueOf(location.getLongitude());
+				//locationValues += "|" + String.valueOf(getTimeZone());
+				//locationValues += "|" + City;
+				//locationValues += "|" + Country;
+				//if (saveLocation == 1 && receiverSource.equals("NETWORK") )
+				//{
+					//salatLocation = new com.skanderjabouzi.favoriteplace.Location();
+					//salatLocation.setId(1);
+					//salatLocation.setLatitude((float)location.getLatitude());
+					//salatLocation.setLongitude((float)location.getLongitude());
+					//salatLocation.setTimezone(getTimeZone());
+					//salatLocation.setCity(City);
+					//salatLocation.setCountry(Country);
+					//ldatasource.updateLocation(salatLocation);
+					//Log.i(TAG,"SAVE_LOCATION");
+				//}
+				//sendNotification(locationValues);
 				 
-			} catch (ClientProtocolException e) {
-				sendNotification("LOCATION_NULL");
-			} catch (IOException e) {
-				sendNotification("LOCATION_NULL");
-			} catch ( JSONException e) {
-				e.printStackTrace();                
+			} 
+			catch (IOException e) {
+					 // TODO Auto-generated catch block
+					 e.printStackTrace();
+					 Toast.makeText(getApplicationContext(),"Could not get address..!", Toast.LENGTH_LONG).show();
 			}
 			
 			stopHandler();
 			cleanLocation();
 		}
 	}
+
 	
 	public float getTimeZone()
 	{
