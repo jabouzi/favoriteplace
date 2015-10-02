@@ -8,9 +8,9 @@ import android.util.Log;
 
 public class SettingsActivity extends Activity {
 	// Declare Tab Variable
-	ActionBar.Tab Tab1, Tab2, Tab3;
-	Fragment fragmentTab1 = new FragmentTab1();
-	Fragment fragmentTab2 = new FragmentTab2();
+	ActionBar.Tab Tab1, Tab2;
+	Fragment locationTab = new LocationTab();
+	Fragment favoriteTab = new FavoriteTab();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -30,12 +30,12 @@ public class SettingsActivity extends Activity {
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// Set Tab Icon and Titles
-		Tab1 = actionBar.newTab().setText("My location");
-		Tab2 = actionBar.newTab().setText("My Favorite");
+		Tab1 = actionBar.newTab().setText(this.getString(R.string.titleLocationTab));
+		Tab2 = actionBar.newTab().setText(this.getString(R.string.titleFavoriteTab));
 
 		// Set Tab Listeners
-		Tab1.setTabListener(new TabListener(fragmentTab1));
-		Tab2.setTabListener(new TabListener(fragmentTab2));
+		Tab1.setTabListener(new TabListener(locationTab));
+		Tab2.setTabListener(new TabListener(favoriteTab));
 
 		// Add tabs to actionbar
 		actionBar.addTab(Tab1);

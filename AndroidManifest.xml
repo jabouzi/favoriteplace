@@ -53,14 +53,12 @@
 
     <service android:name="com.skanderjabouzi.favoriteplace.LocationService" android:enabled="true"/>
 
-<!--
     <receiver android:name="com.skanderjabouzi.favoriteplace.NetworkReceiver">
 		<intent-filter>
 			<action android:name="android.intent.action.TIMEZONE_CHANGED" />
 			<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
 		</intent-filter>
     </receiver>
--->
 
     </application>
 </manifest>

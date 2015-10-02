@@ -41,7 +41,6 @@ public class LocationDataSource {
 		values.put("longitude", location.getLongitude());
 		values.put("city", location.getCity());
 		values.put("country", location.getCountry());
-		values.put("timezone", location.getTimezone());
 
 		database.insert("location", null, values);
 		database.close();
@@ -50,7 +49,7 @@ public class LocationDataSource {
 	// Getting single location
 	Location getLocation(int id) {
 		Cursor cursor = database.query("location", new String[] { "id",
-				"latitude", "longitude", "city", "country", "timezone"}," id = ?",
+				"latitude", "longitude", "city", "country"}," id = ?",
 				new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
@@ -61,7 +60,6 @@ public class LocationDataSource {
 		location.setLongitude(cursor.getFloat(2));
 		location.setCity(cursor.getString(3));
 		location.setCountry(cursor.getString(4));
-		location.setTimezone(cursor.getFloat(5));
 		cursor.close();
 		
 		// return location
@@ -75,22 +73,6 @@ public class LocationDataSource {
 		values.put("longitude", location.getLongitude());
 		values.put("city", location.getCity());
 		values.put("country", location.getCountry());
-		values.put("timezone", location.getTimezone());
-
-		// updating row
-		return database.update("location", values," id = ?",
-				new String[] { String.valueOf(location.getId()) });
-	}
-	
-	public int updateTimeZoneLocation(float timezone) {
-		Location location = new Location();
-		location = getLocation(1);
-		ContentValues values = new ContentValues();
-		values.put("latitude", location.getLatitude());
-		values.put("longitude", location.getLongitude());
-		values.put("city", location.getCity());
-		values.put("country", location.getCountry());
-		values.put("timezone", timezone);
 
 		// updating row
 		return database.update("location", values," id = ?",

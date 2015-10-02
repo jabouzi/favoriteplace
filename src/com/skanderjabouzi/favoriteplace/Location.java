@@ -9,7 +9,6 @@ public class Location implements Serializable{
 	private float longitude;
 	private String country;
 	private String city;
-	private float timezone;
 
 	public long getId() {
 		return id;
@@ -35,14 +34,6 @@ public class Location implements Serializable{
 		this.longitude = longitude;
 	}
 
-	public float getTimezone() {
-		return timezone;
-	}
-
-	public void setTimezone(float timezone) {
-		this.timezone = timezone;
-	}
-
 	public String getCountry() {
 		return country;
 	}
@@ -58,10 +49,4 @@ public class Location implements Serializable{
 	public void setCity(String city) {
 		this.city = city;
 	}
-
-	// Will be used by the ArrayAdapter in the ListView
-	//@Override
-	//public String toString() {
-		//return comment;
-	//}
 }

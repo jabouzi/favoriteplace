@@ -3,12 +3,8 @@
     <string name="app_name">Place favoris</string>
     <string name="date1">00 00 0000</string>
     <string name="date2">00 00 0000</string>
-    <string name="fajr">00:00</string>
-    <string name="duhr">00:00</string>
-    <string name="asr">00:00</string>
-    <string name="maghrib">00:00</string>
-    <string name="isha">00:00</string>
-    <string name="shourouk">00:00</string>
+    <string name="titleLocationTab">My Location Settings</string>
+    <string name="titleFavoriteTab">My Favorite Place Settings</string>
     <string name="cityCountry">Por favor, establece las opciones y ubicación</string>
     <string name="titleNext">Mañana salat tiempos</string>
     <string name="titleOptions">Opciones qalat</string>
