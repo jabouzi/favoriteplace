@@ -27,8 +27,8 @@ import android.provider.Settings;
 public class FavoriteTab extends Fragment{
 	
 	static final String SEND_LOCATION_NOTIFICATIONS = "com.skanderjabouzi.favoriteplace.SEND_LOCATION_NOTIFICATIONS";
-	private EditText latitude, longitude, city, country;
-	private Button btnsaveSettings, btnDetectFavorite;
+	private EditText latitude, longitude, city, country, search;
+	private Button btnsaveSettings, btnSearchFavorite;
 	private int pos = 0;
 	private FavoriteDataSource fdatasource;
 	private Favorite favorite;
@@ -131,14 +131,16 @@ public class FavoriteTab extends Fragment{
 
 		});
 		
-		btnDetectFavorite = (Button) rootView.findViewById(R.id.detectFavorite);
-		btnDetectFavorite.setOnClickListener(new OnClickListener() {
+		btnSearchFavorite = (Button) rootView.findViewById(R.id.searchFavorite);
+		btnSearchFavorite.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), LocationService.class);
 				intent.putExtra("SAVE", "0");
-				intent.putExtra("SOURCE", "SETTINGS");
+				intent.putExtra("SOURCE", "FAVORITE");
+				search = (EditText) rootView.findViewById(R.id.searchLocation);
+				intent.putExtra("SEARCH", String.valueOf(search.getText()));
 				getActivity().startService(intent);
 			}
 
@@ -184,12 +186,13 @@ public class FavoriteTab extends Fragment{
 			}
 			else
 			{
-				String[] geofavorite = extraString.split("\\|");
-				favorite.setLatitude(Float.parseFloat(geofavorite[0]));
-				favorite.setLongitude(Float.parseFloat(geofavorite[1]));
-				favorite.setCity(geofavorite[2]);
-				favorite.setCountry(geofavorite[3]);
-				setFavoriteTexts();
+				Log.i("RESULT", extraString);
+				//String[] geofavorite = extraString.split("\\|");
+				//favorite.setLatitude(Float.parseFloat(geofavorite[0]));
+				//favorite.setLongitude(Float.parseFloat(geofavorite[1]));
+				//favorite.setCity(geofavorite[2]);
+				//favorite.setCountry(geofavorite[3]);
+				//setFavoriteTexts();
 			}
         }
     }

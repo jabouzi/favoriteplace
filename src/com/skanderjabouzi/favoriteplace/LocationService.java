@@ -62,7 +62,14 @@ public class LocationService extends Service implements LocationListener{
 		saveLocation = Integer.parseInt(intent.getStringExtra("SAVE"));
 		receiverSource = intent.getStringExtra("SOURCE");
 		Log.i(TAG,"SOURCE : " + receiverSource);
-		getLocation();
+		if (receiverSource.equals("FAVORITE"))
+		{
+			getLocationByName(intent.getStringExtra("SEARCH"));
+		}
+		else
+		{
+			getLocation();
+		}
 		return super.onStartCommand(intent, flags, startId);
 	}
     
@@ -112,6 +119,7 @@ public class LocationService extends Service implements LocationListener{
 		}		
 		catch (Exception e) 
 		{
+			sendNotification("GEO_NULL");
 			e.printStackTrace();
 		}
 		getGeoLocation();
@@ -120,6 +128,7 @@ public class LocationService extends Service implements LocationListener{
 	public void getGeoLocation() {
 		if (location == null)
 		{
+			sendNotification("GEO_NULL");
 			Log.i(TAG,"LOCATION == NULL");
 		}
 		else
@@ -177,6 +186,63 @@ public class LocationService extends Service implements LocationListener{
 			
 			stopHandler();
 			cleanLocation();
+		}
+	}
+	
+	public void getLocationByName(String locationName)
+	{
+		Geocoder geocoder= new Geocoder(this, Locale.ENGLISH);
+		
+		try {
+				List<Address> addresses = geocoder.getFromLocationName(locationName, 5);
+				if(addresses != null && !addresses.isEmpty()) {
+					Log.i("GEOLOC", java.util.Arrays.asList(addresses.toArray()).toString());
+					Log.i("SERACH", locationName);
+					String locationValues = "";
+					int index = 0;
+					for(Address i : addresses){
+						
+						index++;
+						
+						if ( i.getLocality() != null)
+						{
+							Log.i("CITY", i.getLocality());
+							City = i.getLocality();
+						}
+						
+						if ( i.getCountryName() != null) 
+						{
+							Log.i("COUN", i.getCountryName());
+							Country = i.getCountryName();
+						}
+						
+						if ( i.getAdminArea() != null) 
+						{
+							Log.i("COUN", i.getAdminArea());
+							State = i.getAdminArea();
+						}
+						
+						Log.i(TAG,"LAT : "+i.getLatitude());
+						Log.i(TAG,"LON : "+i.getLongitude());
+						locationValues += String.valueOf(i.getLatitude());
+						locationValues += "|" + String.valueOf(i.getLongitude());
+						locationValues += "|" + City;
+						locationValues += "|" + State;
+						locationValues += "|" + Country;
+						
+						if (index < addresses.size()) locationValues += "@";
+						
+					}
+					sendNotification(locationValues);
+				}
+			
+			
+		} catch (IOException e) {
+			Toast.makeText(getApplicationContext(), 
+					"network unavailable or any other I/O problem occurs" + locationName, 
+					Toast.LENGTH_LONG).show();
+			sendNotification("GEO_NULL");
+			e.printStackTrace();
 		}
 	}
 
