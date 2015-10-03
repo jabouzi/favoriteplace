@@ -23,6 +23,7 @@ import android.app.AlarmManager;
 import android.widget.AdapterView;
 import android.util.Log;
 import android.provider.Settings;
+import android.widget.ListView;
 
 public class FavoriteTab extends Fragment{
 	
@@ -37,6 +38,8 @@ public class FavoriteTab extends Fragment{
     FavoriteReceiver receiver;
     IntentFilter filter;
     View rootView;
+    ListView searchList;
+    List<String> locationNameList
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +53,7 @@ public class FavoriteTab extends Fragment{
 		favorite = fdatasource.getFavorite(1);
 		setFavoriteTexts();
 		addListenerOnButton();
-        
+        locationNameList = new ArrayList<String>();
         return rootView;
     }
     
@@ -187,7 +190,12 @@ public class FavoriteTab extends Fragment{
 			else
 			{
 				Log.i("RESULT", extraString);
-				//String[] geofavorite = extraString.split("\\|");
+				String[] geoAllfavorites = extraString.split("\\@");
+				locationNameList.clear();
+				for(geoAllfavorites i : favorite){
+					String[] geofavorites = favorite.split("\\|");
+					locationNameList.add(geofavorites[2] + " " + geofavorites[3] + " " + geofavorites[3]);
+				}
 				//favorite.setLatitude(Float.parseFloat(geofavorite[0]));
 				//favorite.setLongitude(Float.parseFloat(geofavorite[1]));
 				//favorite.setCity(geofavorite[2]);
