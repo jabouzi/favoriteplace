@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.app.Fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.app.AlertDialog.Builder;
 import android.content.BroadcastReceiver;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ import android.widget.AdapterView;
 import android.util.Log;
 import android.provider.Settings;
 import android.widget.ListView;
+import java.util.Arrays;
+import android.view.inputmethod.InputMethodManager;
 
 public class FavoriteTab extends Fragment{
 	
@@ -35,16 +38,19 @@ public class FavoriteTab extends Fragment{
 	private Favorite favorite;
 	private Context context = getActivity();
 	private Intent favoriteIntent;
+	private ArrayAdapter<String> adapter;
     FavoriteReceiver receiver;
     IntentFilter filter;
     View rootView;
     ListView searchList;
-    List<String> locationNameList
+    List<String> locationNameList;
+    private AlertDialog dialog;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.favorite, container, false);
+		searchList = (ListView) rootView.findViewById(R.id.searchList);
 		receiver = new FavoriteReceiver();
         filter = new IntentFilter( LocationService.LOCATION_INTENT );
         favoriteIntent = new Intent(getActivity(), LocationService.class);
@@ -54,6 +60,8 @@ public class FavoriteTab extends Fragment{
 		setFavoriteTexts();
 		addListenerOnButton();
         locationNameList = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, locationNameList);
+		searchList.setAdapter(adapter);
         return rootView;
     }
     
@@ -145,6 +153,8 @@ public class FavoriteTab extends Fragment{
 				search = (EditText) rootView.findViewById(R.id.searchLocation);
 				intent.putExtra("SEARCH", String.valueOf(search.getText()));
 				getActivity().startService(intent);
+				InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
 			}
 
 		});
@@ -192,10 +202,27 @@ public class FavoriteTab extends Fragment{
 				Log.i("RESULT", extraString);
 				String[] geoAllfavorites = extraString.split("\\@");
 				locationNameList.clear();
-				for(geoAllfavorites i : favorite){
-					String[] geofavorites = favorite.split("\\|");
+				for(String i : geoAllfavorites){
+					String[] geofavorites = i.split("\\|");
 					locationNameList.add(geofavorites[2] + " " + geofavorites[3] + " " + geofavorites[3]);
 				}
+				
+				AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+				builder.setTitle("Colors");
+			
+				final CharSequence str[]={"Red","Yellow","Green","Orange","Blue"};
+				
+				builder.setItems(locationNameList.toArray(new String[locationNameList.size()]), new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int position) {
+						//TODO Auto-generated method stub
+						Toast.makeText(getActivity(), "You are selected: "+str[position], Toast.LENGTH_SHORT).show();
+					}
+				});
+				
+				dialog=builder.create();
+				dialog.show();
 				//favorite.setLatitude(Float.parseFloat(geofavorite[0]));
 				//favorite.setLongitude(Float.parseFloat(geofavorite[1]));
 				//favorite.setCity(geofavorite[2]);
