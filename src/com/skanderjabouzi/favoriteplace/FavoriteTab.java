@@ -8,11 +8,11 @@ import android.view.View.OnClickListener;
 import android.app.Fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.app.AlertDialog.Builder;
 import android.content.BroadcastReceiver;
 import java.util.ArrayList;
 import java.util.List;
 import android.widget.EditText;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 import android.content.Context;
@@ -23,12 +23,15 @@ import android.app.AlarmManager;
 import android.widget.AdapterView;
 import android.util.Log;
 import android.provider.Settings;
+import android.widget.ListView;
+import java.util.Arrays;
+import android.view.inputmethod.InputMethodManager;
 
 public class FavoriteTab extends Fragment{
 	
 	static final String SEND_LOCATION_NOTIFICATIONS = "com.skanderjabouzi.favoriteplace.SEND_LOCATION_NOTIFICATIONS";
-	private EditText latitude, longitude, city, country;
-	private Button btnsaveSettings, btnDetectFavorite;
+	private EditText latitude, longitude, city, country, search;
+	private Button btnsaveSettings, btnSearchFavorite;
 	private int pos = 0;
 	private FavoriteDataSource fdatasource;
 	private Favorite favorite;
@@ -37,6 +40,8 @@ public class FavoriteTab extends Fragment{
     FavoriteReceiver receiver;
     IntentFilter filter;
     View rootView;
+    List<String> locationNameList;
+    private AlertDialog dialog;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +55,7 @@ public class FavoriteTab extends Fragment{
 		favorite = fdatasource.getFavorite(1);
 		setFavoriteTexts();
 		addListenerOnButton();
-        
+        locationNameList = new ArrayList<String>();
         return rootView;
     }
     
@@ -131,15 +136,19 @@ public class FavoriteTab extends Fragment{
 
 		});
 		
-		btnDetectFavorite = (Button) rootView.findViewById(R.id.detectFavorite);
-		btnDetectFavorite.setOnClickListener(new OnClickListener() {
+		btnSearchFavorite = (Button) rootView.findViewById(R.id.searchFavorite);
+		btnSearchFavorite.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), LocationService.class);
 				intent.putExtra("SAVE", "0");
-				intent.putExtra("SOURCE", "SETTINGS");
+				intent.putExtra("SOURCE", "FAVORITE");
+				search = (EditText) rootView.findViewById(R.id.searchLocation);
+				intent.putExtra("SEARCH", String.valueOf(search.getText()));
 				getActivity().startService(intent);
+				InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
 			}
 
 		});
@@ -184,12 +193,47 @@ public class FavoriteTab extends Fragment{
 			}
 			else
 			{
-				String[] geofavorite = extraString.split("\\|");
-				favorite.setLatitude(Float.parseFloat(geofavorite[0]));
-				favorite.setLongitude(Float.parseFloat(geofavorite[1]));
-				favorite.setCity(geofavorite[2]);
-				favorite.setCountry(geofavorite[3]);
-				setFavoriteTexts();
+				final ArrayList<String[]> addresses = new ArrayList<String[]>();
+				Log.i("RESULT", extraString);
+				String[] geoAllfavorites = extraString.split("\\@");
+				locationNameList.clear();
+				for(String i : geoAllfavorites){
+					String[] geofavorites = i.split("\\|");
+					locationNameList.add(geofavorites[2] + " " + geofavorites[3] + " " + geofavorites[4]);
+					addresses.add(geofavorites);
+				}
+				
+				if (locationNameList.size() > 1)
+				{
+					AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+					builder.setTitle(R.string.titleSelectFavorite);
+				
+					
+					builder.setItems(locationNameList.toArray(new String[locationNameList.size()]), new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int position) {
+							//TODO Auto-generated method stub
+							//Toast.makeText(getActivity(), "You are selected: "+str[position], Toast.LENGTH_SHORT).show();
+							favorite.setLatitude(Float.parseFloat(addresses.get(position)[0]));
+							favorite.setLongitude(Float.parseFloat(addresses.get(position)[1]));
+							favorite.setCity(addresses.get(position)[2]);
+							favorite.setCountry(addresses.get(position)[4]);
+							setFavoriteTexts();
+						}
+					});
+					
+					dialog=builder.create();
+					dialog.show();
+				}
+				else
+				{
+					favorite.setLatitude(Float.parseFloat(addresses.get(0)[0]));
+					favorite.setLongitude(Float.parseFloat(addresses.get(0)[1]));
+					favorite.setCity(addresses.get(0)[2]);
+					favorite.setCountry(addresses.get(0)[4]);
+					setFavoriteTexts();
+				}
 			}
         }
     }

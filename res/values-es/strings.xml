@@ -61,7 +61,9 @@
     <string name="stopadhan">Detener adhan</string>
     <string name="about">Sobre esta app</string>
     <string name="autoDetectLocation">Auto Detect Location</string>
-    
+    <string name="searchLocation">Search Location</string>
+    <string name="titleSelectFavorite">Select Your Favorite Place</string>
+
 <string-array name="calculation">
         <item>Ithna Ashari</item>
         <item>University of Islamic Sciences, Karachi</item>

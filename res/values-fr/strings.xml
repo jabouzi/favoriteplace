@@ -61,6 +61,8 @@
     <string name="stopadhan">Stopper l\'adhan</string>
     <string name="about">À propos de l\'application</string>
     <string name="autoDetectLocation">Auto Detect Location</string>
+    <string name="searchLocation">Search Location</string>
+    <string name="titleSelectFavorite">Selectionnez votre place favorite</string>
     
 <string-array name="calculation">
         <item>Ithna Ashari</item>

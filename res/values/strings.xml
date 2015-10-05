@@ -54,6 +54,8 @@
     <string name="Compass">Compass</string>
     <string name="about">About this app</string>
     <string name="autoDetectLocation">Auto Detect Location</string>
+    <string name="searchLocation">Search Location</string>
+    <string name="titleSelectFavorite">Select Your Favorite Place</string>
 
     <string-array name="autoLocation">
         <item>Yes</item>
