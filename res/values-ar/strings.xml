@@ -3,8 +3,8 @@
     <string name="app_name">Place favoris</string>
     <string name="date1">00 00 0000</string>
     <string name="date2">00 00 0000</string>
-    <string name="titleLocationTab">My Location Settings</string>
-    <string name="titleFavoriteTab">My Favorite Place Settings</string>
+    <string name="titleLocationTab">تحديد موقعي</string>
+    <string name="titleFavoriteTab">تحديد مكاني مفضل</string>
     <string name="cityCountry">يرجى تحديد خياراتك، والمكان</string>
     <string name="titleNext">أوقات صلاة الغد</string>
     <string name="titleOptions">خيارات الصلاة</string>
