@@ -54,14 +54,14 @@
         android:src="@drawable/cover" />
         <ImageView
         android:id="@+id/dial"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         android:src="@drawable/compass" />
         <ImageView
         android:id="@+id/dial2"
         android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_height="290dp"
         android:layout_gravity="center"
         android:src="@drawable/pointer" />
 	</FrameLayout>
