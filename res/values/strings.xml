@@ -1,71 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Favorite Place</string>
-    <string name="date1">00 00 0000</string>
-    <string name="date2">00 00 0000</string>
     <string name="cityCountry">Please set your options and location</string>
     <string name="titleLocationTab">My Location Settings</string>
     <string name="titleFavoriteTab">My Favorite Place Settings</string>
-    <string name="titleOptions">Salat Options</string>
-    <string name="titleLocation">Salat Location</string>
-    <string name="titleSettings">Salat Settings</string>
-    <string name="titleSalatCompass">Compass Direction</string>
+    <string name="titleLocation">Location</string>
+    <string name="titleSettings">Settings</string>
     <string name="titleDegree">Current direction</string>
     <string name="titleDialDegree">Compass Direction</string>
-    <string name="send_salat_notifications_permission_label">Sends salat Notifications</string>
-    <string name="send_salat_notifications_permission_description">Allow this application to send salat notifications to other applications</string>
-    <string name="receive_salat_notifications_permission_label">Receive salat Notifications</string>
-    <string name="receive_salat_notifications_permission_description">Allow this application to receive salat notifications from other applications</string>
     <string name="send_location_notifications_permission_label">Sends location Notifications</string>
     <string name="send_location_notifications_permission_description">Allow this application to send location notifications to other applications</string>
     <string name="receive_location_notifications_permission_label">Receive location Notifications</string>
     <string name="receive_location_notifications_permission_description">Allow this application to receive location notifications from other applications</string>
-    <string name="send_phone_notifications_permission_label">Sends phone Notifications</string>
-    <string name="send_phone_notifications_permission_description">Allow this application to send phone notifications to other applications</string>
-    <string name="receive_phone_notifications_permission_label">Receive phone Notifications</string>
-    <string name="receive_phone_notifications_permission_description">Allow this application to receive phone notifications from other applications</string>
-    <string name="titleCalculation">Salat Calculation</string>
-    <string name="summaryCalculation">Salat Calculation options</string>
-    <string name="titleHijri">Hijri Adjustement</string>
-    <string name="summaryHijri">Hijri Date Adjustemt Options</string>
-    <string name="titleAsr">Asr Options</string>
-    <string name="summaryAsr">Asr Calculation Options</string>
-    <string name="titleHighLatitudes">High Latitudes</string>
-    <string name="summaryHighLatitudes">High Latitudes Calculation options</string>
-    <string name="msgNotificationTitle">It\'s Salat Time</string>
-    <string name="msgNotificationMessage">It\'s time time for salat %s </string>
     <string name="titleLongitude">Longitude</string>
     <string name="summaryLongitude">Location Longitude</string>
     <string name="titleLatitude">Latitude</string>
     <string name="summaryLatitude">Location Latitude</string>
-    <string name="titleTimezone">Timezone</string>
-    <string name="summaryTimezone">Location Timezone</string>
     <string name="titleCity">City</string>
     <string name="summaryCity">City Name</string>
     <string name="titleCountry">Country</string>
     <string name="titleDial">Dial</string>
     <string name="detectLocation">Detect Location</string>
     <string name="saveLocation">Save Location</string>
-    <string name="saveOptions">Save Options</string>
     <string name="saveSettings">Save Settings</string>
-    <string name="options">Options</string>
     <string name="location">Location</string>
     <string name="settings">Settings</string>
     <string name="Compass">Compass</string>
     <string name="about">About this app</string>
-    <string name="autoDetectLocation">Auto Detect Location</string>
     <string name="searchLocation">Search Location</string>
     <string name="titleSelectFavorite">Select Your Favorite Place</string>
     <string name="distanceTitle">Distance</string>
-
-    <string-array name="autoLocation">
-        <item>Yes</item>
-        <item>No</item>
-    </string-array>
-
-    <string-array name="autoLocationValues">
-        <item>1</item>
-        <item>0</item>
-    </string-array>
-
 </resources>
