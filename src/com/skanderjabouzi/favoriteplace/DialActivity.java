@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.graphics.Color;
 
 public class DialActivity extends Activity implements SensorEventListener {
 
@@ -34,8 +35,12 @@ public class DialActivity extends Activity implements SensorEventListener {
 	TextView compassDegreeTitle;
 	TextView dialDegree;	
 	TextView dialDegreeTitle;	
-	private LocationDataSource datasource;
+	TextView favoriteName;	
+	TextView distanceValue;	
+	private LocationDataSource ldatasource;
 	private Location location;
+	private FavoriteDataSource fdatasource;
+	private Favorite favorite;
 	private boolean background_changed = false;
 	private Context context = DialActivity.this;
 
@@ -68,25 +73,34 @@ public class DialActivity extends Activity implements SensorEventListener {
         
 		image = (ImageView) findViewById(R.id.dial);
 		image2 = (ImageView) findViewById(R.id.dial2);
-		//rotate(image2, 0, 178f, 0);
 		compassDegree = (TextView) findViewById(R.id.degree);
 		compassDegreeTitle = (TextView) findViewById(R.id.degree_title);
 		dialDegree = (TextView) findViewById(R.id.dial_degree);
 		dialDegreeTitle = (TextView) findViewById(R.id.dial_degree_title);
-		//dialDegree.setText(Float.toString(58.64f));
+		favoriteName = (TextView) findViewById(R.id.favoriteName);
+		distanceValue = (TextView) findViewById(R.id.distanceValue);
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);		
-		datasource = new LocationDataSource(this);
-		datasource.open();
-		location = datasource.getLocation(1);
+		ldatasource = new LocationDataSource(this);
+		ldatasource.open();
+		location = ldatasource.getLocation(1);
+		fdatasource = new FavoriteDataSource(this);
+		fdatasource.open();
+		favorite = fdatasource.getFavorite(1);
 		compassDegreeTitle.setText(this.getString(R.string.titleDegree));
 		dialDegreeTitle.setText(this.getString(R.string.titleDialDegree));
 		dialDegree.setText(String.format("%d",(int)getdial()));
+		favoriteName.setText(String.format("%s",getFavoriteName()));
+		distanceValue.setText(String.format("%s",getDistance()));
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_NORMAL);
+		favorite = fdatasource.getFavorite(1);
+		dialDegree.setText(String.format("%d",(int)getdial()));
+		favoriteName.setText(String.format("%s",getFavoriteName()));
+		distanceValue.setText(String.format("%s",getDistance()));
 	}
 	
 	@Override
@@ -99,7 +113,7 @@ public class DialActivity extends Activity implements SensorEventListener {
     @Override
     protected void onStop() {
         super.onStop();
-        if (datasource.isOpen()) datasource.close();
+        if (ldatasource.isOpen()) ldatasource.close();
         //finish();
         //mSensorManager.unregisterListener(this);
     }
@@ -107,7 +121,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 	@Override
     protected void onDestroy() {
         super.onDestroy();
-        if (datasource.isOpen()) datasource.close();
+        if (ldatasource.isOpen()) ldatasource.close();
         //finish();
         //mSensorManager.unregisterListener(this);
     }
@@ -122,19 +136,19 @@ public class DialActivity extends Activity implements SensorEventListener {
 	public void onSensorChanged(SensorEvent event) {
 		float degree = Math.round(event.values[0]);
 		
-		//if ((int)degree == (int)getdial())
-		//{
-			//background_changed = true;
-			//dialLayout.setBackgroundResource(R.drawable.bg2);
-		//}
-		//else
-		//{
-			//if (background_changed)
-			//{
-				//background_changed = false;
-				//dialLayout.setBackgroundResource(R.drawable.bg1);
-			//}
-		//}
+		if ((int)degree == (int)getdial())
+		{
+			background_changed = true;
+			favoriteName.setTextColor(Color.parseColor("#F7CE1E"));
+		}
+		else
+		{
+			if (background_changed)
+			{
+				background_changed = false;
+				favoriteName.setTextColor(Color.parseColor("#FFFFFF"));
+			}
+		}
 		
 		compassDegree.setText(String.format("%d",(int)degree));
 		rotate(image, currentDegree, degree, 300);
@@ -159,9 +173,8 @@ public class DialActivity extends Activity implements SensorEventListener {
 	
 	private float getdial()
 	{    
-		final float MLONG = 39.823333f;
-		final float MLAT = 21.42333f;    
-		//final float Math.PI = 4.0f*Math.atan(1.0f);
+		final float MLONG = favorite.getLongitude();
+		final float MLAT = favorite.getLatitude();    
 		
 		float x1 = (float)Math.sin((-location.getLongitude()+MLONG)*Math.PI/180f);
 		float y1 = (float)Math.cos(location.getLatitude()*Math.PI/180f) * (float)Math.tan(MLAT*Math.PI/180f);
@@ -174,6 +187,22 @@ public class DialActivity extends Activity implements SensorEventListener {
 		}
 		if (dial_angle > 360f) dial_angle = dial_angle - 360f;    
 		return dial_angle;        
+	}
+	
+	private int getDistance()
+	{
+		final float dlon = favorite.getLongitude() - location.getLongitude();
+		final float dlat = favorite.getLatitude() - location.getLatitude();
+		double a = Math.pow(Math.sin(dlat/2),2) + Math.cos(location.getLatitude()) * Math.cos(favorite.getLatitude()) * Math.pow(Math.sin(dlon/2),2);
+		double c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a)); 
+		double d = (double)6373 * c;
+		
+		return (int)d;
+	}
+	
+	private String getFavoriteName()
+	{
+		return favorite.getCity() + " " + favorite.getCountry();
 	}
 	
 	@Override

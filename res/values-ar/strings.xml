@@ -63,6 +63,7 @@
     <string name="autoDetectLocation">Auto Detect Location</string>
     <string name="searchLocation">Search Location</string>
     <string name="titleSelectFavorite">Select Your Favorite Place</string>
+    <string name="distanceTitle">Distance</string>
 
     <string-array name="autoLocation">
         <item>Yes</item>

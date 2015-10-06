@@ -194,12 +194,17 @@ public class FavoriteTab extends Fragment{
 			else
 			{
 				final ArrayList<String[]> addresses = new ArrayList<String[]>();
-				Log.i("RESULT", extraString);
+				//Log.i("RESULT", extraString);
 				String[] geoAllfavorites = extraString.split("\\@");
 				locationNameList.clear();
 				for(String i : geoAllfavorites){
 					String[] geofavorites = i.split("\\|");
-					locationNameList.add(geofavorites[2] + " " + geofavorites[3] + " " + geofavorites[4]);
+					Log.i("GEOLOC", java.util.Arrays.asList(geofavorites).toString());
+					String listItem = "";
+					listItem = geofavorites[2];
+					listItem += " " + geofavorites[3];
+					if (geofavorites.length > 4) listItem += " " + geofavorites[4];
+					locationNameList.add(listItem);
 					addresses.add(geofavorites);
 				}
 				
@@ -213,12 +218,10 @@ public class FavoriteTab extends Fragment{
 						
 						@Override
 						public void onClick(DialogInterface dialog, int position) {
-							//TODO Auto-generated method stub
-							//Toast.makeText(getActivity(), "You are selected: "+str[position], Toast.LENGTH_SHORT).show();
 							favorite.setLatitude(Float.parseFloat(addresses.get(position)[0]));
 							favorite.setLongitude(Float.parseFloat(addresses.get(position)[1]));
 							favorite.setCity(addresses.get(position)[2]);
-							favorite.setCountry(addresses.get(position)[4]);
+							if (addresses.get(position).length > 4) favorite.setCountry(addresses.get(position)[4]);
 							setFavoriteTexts();
 						}
 					});
@@ -231,7 +234,7 @@ public class FavoriteTab extends Fragment{
 					favorite.setLatitude(Float.parseFloat(addresses.get(0)[0]));
 					favorite.setLongitude(Float.parseFloat(addresses.get(0)[1]));
 					favorite.setCity(addresses.get(0)[2]);
-					favorite.setCountry(addresses.get(0)[4]);
+					if (addresses.get(0).length > 4) favorite.setCountry(addresses.get(0)[4]);
 					setFavoriteTexts();
 				}
 			}
