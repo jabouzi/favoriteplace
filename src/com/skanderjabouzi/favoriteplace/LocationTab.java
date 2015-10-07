@@ -126,7 +126,7 @@ public class LocationTab extends Fragment{
 
 				ldatasource.updateLocation(location);
 				
-				getActivity().finish();
+				//getActivity().finish();
 			}
 
 		});

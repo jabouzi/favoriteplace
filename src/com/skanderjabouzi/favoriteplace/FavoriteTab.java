@@ -131,7 +131,7 @@ public class FavoriteTab extends Fragment{
 
 				fdatasource.updateFavorite(favorite);
 				
-				getActivity().finish();
+				//getActivity().finish();
 			}
 
 		});
