@@ -189,7 +189,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 		return dial_angle;        
 	}
 	
-	private int getDistance()
+	private String getDistance()
 	{
 		final float dlon = favorite.getLongitude() - location.getLongitude();
 		final float dlat = favorite.getLatitude() - location.getLatitude();
@@ -197,7 +197,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 		double c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a)); 
 		double d = (double)6373 * c;
 		
-		return (int)d;
+		return this.getString(R.string.distanceTitle) + " " + String.valueOf((int)d) + " KM";
 	}
 	
 	private String getFavoriteName()

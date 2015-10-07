@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:id="@+id/dialView" >    
+    android:id="@+id/dialView" >
+    
 	<TextView 
 		android:id="@+id/favoriteName"
 		android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:gravity="center"
         android:singleLine="true"
 		android:textSize="30sp"
@@ -16,28 +16,30 @@
 		android:textColor="#fff"
 		android:text="">
 	</TextView>
+<!--
 	<TextView 
 		android:id="@+id/distanceTitle"
 		android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:gravity="center"
         android:singleLine="true"
 		android:textSize="15sp"
 		android:textColor="#fff"
-		android:text="@string/distanceTitle">
+		android:text="@string/distanceTitle"
+		android:layout_below="@id/favoriteName" >
 	</TextView>
+-->
 	<TextView 
 		android:id="@+id/distanceValue"
 		android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:gravity="center"
         android:singleLine="true"
 		android:textSize="15sp"
 		android:textStyle="bold"
 		android:textColor="#fff"
-		android:text="">
+		android:text=""
+		android:layout_below="@id/favoriteName" >
 	</TextView>
 	
 <!--
@@ -66,12 +68,14 @@
    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent">
+<!--
         <ImageView
         android:id="@+id/cover"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
         android:src="@drawable/cover" />
+-->
         <ImageView
         android:id="@+id/dial"
         android:layout_width="300dp"
