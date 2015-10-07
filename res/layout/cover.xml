@@ -4,7 +4,17 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" 
     android:id="@+id/coverView" >
-    
+    <TextView 
+		android:id="@+id/coverMessage"
+		android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:singleLine="true"
+		android:textSize="10sp"
+		android:textStyle="bold"
+		android:textColor="#fff"
+		android:text="@string/coverMessage">
+	</TextView>
    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent">
