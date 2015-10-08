@@ -1,1 +1,2 @@
 http://www.craftsmanspace.com/free-patterns
+http://christine-coenen.de/blog/2014/07/02/smooth-compass-needle-in-android-or-any-angle-with-low-pass-filter/
