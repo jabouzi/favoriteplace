@@ -156,8 +156,8 @@ public class DialActivity extends Activity implements SensorEventListener {
 		}
 		
 		compassDegree.setText(String.format("%d",(int)degree));
-		if (Math.abs((float)(int)currentDegree - (float)(int)degree) > 1)
-		{
+		//if (Math.abs((float)(int)currentDegree - (float)(int)degree) > 1)
+		//{
 			//rotate(image2, (float)(int)currentDegree + (float)(int)directionDegree, (float)(int)degree + (float)(int)directionDegree, 2000);
 			rotate(image, (float)(int)currentDegree, (float)(int)degree, 1000);
 			//Log.i("CURRENTDEGREE : ", String.valueOf((float)(int)currentDegree));
@@ -165,7 +165,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 			//Log.i("CURRENTDEGREE 2 : ", String.valueOf((float)(int)currentDegree + (float)(int)directionDegree));
 			//Log.d("DEGREE 2 : ", String.valueOf((float)(int)degree + (float)(int)directionDegree));
 			currentDegree = -degree;
-		}
+		//}
 	}
 
 	@Override
