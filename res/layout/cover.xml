@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:singleLine="true"
-		android:textSize="10sp"
+		android:textSize="18sp"
 		android:textStyle="bold"
 		android:textColor="#fff"
 		android:text="@string/coverMessage">

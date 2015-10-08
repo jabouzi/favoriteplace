@@ -82,10 +82,18 @@
         android:layout_height="300dp"
         android:layout_gravity="center"
         android:src="@drawable/compass" />
+<!--
+        <ImageView
+        android:id="@+id/dial1"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_gravity="center"
+        android:src="@drawable/arrow2" />
+-->
         <ImageView
         android:id="@+id/dial2"
         android:layout_width="45dp"
-        android:layout_height="286dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         android:src="@drawable/pointer" />
 	</FrameLayout>

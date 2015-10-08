@@ -26,9 +26,11 @@ public class DialActivity extends Activity implements SensorEventListener {
 	private View dialView;
     private OnSwipeTouchListener onSwipeTouchListener;
 	private ImageView image;
+	private ImageView image1;
 	private ImageView image2;
 	private int sensorAccuracy;
 	private float currentDegree = 0f;
+	private float directionDegree = 0f;
 	//private float currentDegree2 = 178f;
 	private SensorManager mSensorManager;
 	TextView compassDegree;
@@ -72,6 +74,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 		dialView.setOnTouchListener(onSwipeTouchListener);
         
 		image = (ImageView) findViewById(R.id.dial);
+		//image1 = (ImageView) findViewById(R.id.dial1);
 		image2 = (ImageView) findViewById(R.id.dial2);
 		compassDegree = (TextView) findViewById(R.id.degree);
 		compassDegreeTitle = (TextView) findViewById(R.id.degree_title);
@@ -86,11 +89,13 @@ public class DialActivity extends Activity implements SensorEventListener {
 		fdatasource = new FavoriteDataSource(this);
 		fdatasource.open();
 		favorite = fdatasource.getFavorite(1);
+		directionDegree = (int)getdial();
 		compassDegreeTitle.setText(this.getString(R.string.titleDegree));
 		dialDegreeTitle.setText(this.getString(R.string.titleDialDegree));
-		dialDegree.setText(String.format("%d",(int)getdial()));
+		dialDegree.setText(String.format("%d", (int)directionDegree));
 		favoriteName.setText(String.format("%s",getFavoriteName()));
 		distanceValue.setText(String.format("%s",getDistance()));
+		//rotate(image2, 0, 0-(int)getdial(), 300);
 	}
 
 	@Override
@@ -151,8 +156,16 @@ public class DialActivity extends Activity implements SensorEventListener {
 		}
 		
 		compassDegree.setText(String.format("%d",(int)degree));
-		rotate(image, currentDegree, degree, 300);
-		currentDegree = -degree;
+		if (Math.abs((float)(int)currentDegree - (float)(int)degree) > 1)
+		{
+			//rotate(image2, (float)(int)currentDegree + (float)(int)directionDegree, (float)(int)degree + (float)(int)directionDegree, 2000);
+			rotate(image, (float)(int)currentDegree, (float)(int)degree, 1000);
+			//Log.i("CURRENTDEGREE : ", String.valueOf((float)(int)currentDegree));
+			//Log.d("DEGREE : ", String.valueOf((float)(int)degree));
+			//Log.i("CURRENTDEGREE 2 : ", String.valueOf((float)(int)currentDegree + (float)(int)directionDegree));
+			//Log.d("DEGREE 2 : ", String.valueOf((float)(int)degree + (float)(int)directionDegree));
+			currentDegree = -degree;
+		}
 	}
 
 	@Override
