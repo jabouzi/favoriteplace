@@ -31,4 +31,5 @@
     <string name="titleSelectFavorite">Select Your Favorite Place</string>
     <string name="distanceTitle">Distance</string>
     <string name="coverMessage">Swipe up to open</string>
+    <string name="savedsucess">Saved Successfully</string>
 </resources>

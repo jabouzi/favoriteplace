@@ -131,7 +131,7 @@ public class FavoriteTab extends Fragment{
 
 				fdatasource.updateFavorite(favorite);
 				
-				//getActivity().finish();
+				Toast.makeText(getActivity(), R.string.savedsucess,	Toast.LENGTH_LONG).show();
 			}
 
 		});
