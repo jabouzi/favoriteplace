@@ -1,4 +1,5 @@
 http://www.kircherelectronics.com/blog/index.php/11-android/sensors/8-low-pass-filter-the-basics
+https://github.com/Bhide/Low-Pass-Filter-To-Android-Sensors
 
 http://www.craftsmanspace.com/free-patterns
 http://christine-coenen.de/blog/2014/07/02/smooth-compass-needle-in-android-or-any-angle-with-low-pass-filter/

@@ -159,7 +159,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 		//if (Math.abs((float)(int)currentDegree - (float)(int)degree) > 1)
 		//{
 			//rotate(image2, (float)(int)currentDegree + (float)(int)directionDegree, (float)(int)degree + (float)(int)directionDegree, 2000);
-			rotate(image, (float)(int)currentDegree, (float)(int)degree, 1000);
+			rotate(image2, (float)(int)currentDegree, (float)(int)degree, 1000);
 			//Log.i("CURRENTDEGREE : ", String.valueOf((float)(int)currentDegree));
 			//Log.d("DEGREE : ", String.valueOf((float)(int)degree));
 			//Log.i("CURRENTDEGREE 2 : ", String.valueOf((float)(int)currentDegree + (float)(int)directionDegree));
@@ -175,7 +175,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 	}
 	
 	private void rotate(ImageView imgview, float currentDegree, float degree, int duration) {
-		RotateAnimation rotateAnim = new RotateAnimation(currentDegree, -degree,
+		RotateAnimation rotateAnim = new RotateAnimation(-currentDegree, degree,
 				RotateAnimation.RELATIVE_TO_SELF, 0.5f,
 				RotateAnimation.RELATIVE_TO_SELF, 0.5f);
 
