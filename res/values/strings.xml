@@ -19,6 +19,7 @@
     <string name="titleCity">City</string>
     <string name="summaryCity">City Name</string>
     <string name="titleCountry">Country</string>
+    <string name="titleState">Administrative area</string>
     <string name="titleDial">Dial</string>
     <string name="detectLocation">Detect Location</string>
     <string name="saveLocation">Save Location</string>
@@ -28,6 +29,7 @@
     <string name="Compass">Compass</string>
     <string name="about">About this app</string>
     <string name="searchLocation">Search Location</string>
+    <string name="search">Search</string>
     <string name="titleSelectFavorite">Select Your Favorite Place</string>
     <string name="distanceTitle">Distance</string>
     <string name="coverMessage">Swipe up to open</string>

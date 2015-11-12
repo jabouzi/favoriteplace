@@ -8,12 +8,12 @@ import android.util.Log;
 public class DBHelper extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "favoriteplace.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 
 	private static final String OPTIONS_CREATE =
-	"CREATE TABLE favorite (id integer, latitude float, longitude float, country string, city string); ";
+	"CREATE TABLE favorite (id integer, latitude float, longitude float, country string, city string, state string); ";
 	private static final String LOCATION_CREATE =	
-	"CREATE TABLE location (id integer, latitude float, longitude float, country string, city string); ";
+	"CREATE TABLE location (id integer, latitude float, longitude float, country string, city string, state string); ";
 	Context dBcontext;
 
 	public DBHelper(Context context) {
@@ -26,8 +26,8 @@ public class DBHelper extends SQLiteOpenHelper {
 		String setApp = dBcontext.getString(R.string.cityCountry).replaceAll("'","''");
 		database.execSQL(OPTIONS_CREATE);
 		database.execSQL(LOCATION_CREATE);
-		database.execSQL(" INSERT INTO favorite VALUES ('1','0','0','"+setApp+"','"+setApp+"'); ");
-		database.execSQL(" INSERT INTO location VALUES ('1','0','0','"+setApp+"','"+setApp+"'); ");
+		database.execSQL(" INSERT INTO favorite VALUES ('1','','','','',''); ");
+		database.execSQL(" INSERT INTO location VALUES ('1','','','','',''); ");
 		Log.i("DBHelper", "DB Created");
 	}
 
