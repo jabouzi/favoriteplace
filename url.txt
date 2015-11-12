@@ -1,3 +1,5 @@
+http://www.sunearthtools.com/tools/distance.php
+
 http://www.kircherelectronics.com/blog/index.php/11-android/sensors/8-low-pass-filter-the-basics
 https://github.com/Bhide/Low-Pass-Filter-To-Android-Sensors
 
