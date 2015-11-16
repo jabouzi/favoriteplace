@@ -50,6 +50,8 @@
 			android:screenOrientation="portrait" />
     <activity android:name="com.skanderjabouzi.favoriteplace.SettingsActivity" android:label="@string/titleSettings" 
 			android:screenOrientation="portrait" />
+ <activity android:name="com.skanderjabouzi.favoriteplace.AboutActivity" android:label="@string/about"
+			android:screenOrientation="portrait" />
 
     <service android:name="com.skanderjabouzi.favoriteplace.LocationService" android:enabled="true"/>
 
