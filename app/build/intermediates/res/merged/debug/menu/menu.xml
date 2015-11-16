@@ -1,0 +1,5 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/settings" android:title="@string/settings" android:icon="@drawable/settings"></item>
+    <item android:id="@+id/about" android:title="@string/about" android:icon="@drawable/about"></item>
+</menu>
+<!-- From: file:/Users/skanderjabouzi/Development/Android/favoriteplace/app/src/main/res/menu/menu.xml -->

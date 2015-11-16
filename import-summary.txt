@@ -1,0 +1,138 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .gitignore
+* .idea/
+* .idea/.name
+* .idea/compiler.xml
+* .idea/copyright/
+* .idea/copyright/profiles_settings.xml
+* .idea/misc.xml
+* .idea/modules.xml
+* .idea/vcs.xml
+* .idea/workspace.xml
+* Octagon.png
+* Octagon_2.svg
+* SalatQibla.java
+* SettingsActivity.java
+* app/
+* app/build.gradle
+* app/src/
+* app/src/main/
+* app/src/main/AndroidManifest.xml
+* app/src/main/java/
+* app/src/main/java/com/
+* app/src/main/java/com/skanderjabouzi/
+* app/src/main/java/com/skanderjabouzi/favoriteplace/
+* app/src/main/java/com/skanderjabouzi/favoriteplace/AboutDialog.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/CoverActivity.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/DBHelper.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/DialActivity.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/Favorite.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/FavoriteDataSource.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/FavoriteTab.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/Location.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/LocationDataSource.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/LocationService.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/LocationTab.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/NetworkReceiver.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/OnSwipeTouchListener.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/SettingsActivity.java
+* app/src/main/java/com/skanderjabouzi/favoriteplace/TabListener.java
+* app/src/main/res/
+* app/src/main/res/anim/
+* app/src/main/res/anim/slide_in_down.xml
+* app/src/main/res/anim/slide_in_up.xml
+* app/src/main/res/anim/slide_out_down.xml
+* app/src/main/res/anim/slide_out_up.xml
+* app/src/main/res/drawable/
+* app/src/main/res/drawable/.DS_Store
+* app/src/main/res/drawable/about.png
+* app/src/main/res/drawable/arrow.png
+* app/src/main/res/drawable/arrow2.png
+* app/src/main/res/drawable/compass.png
+* app/src/main/res/drawable/icon.png
+* app/src/main/res/drawable/layout_bg.xml
+* app/src/main/res/drawable/ornament.png
+* app/src/main/res/drawable/pointer.png
+* app/src/main/res/drawable/settings.png
+* app/src/main/res/layout/
+* app/src/main/res/layout/about.xml
+* app/src/main/res/layout/activity_main.xml
+* app/src/main/res/layout/cover.xml
+* app/src/main/res/layout/dial.xml
+* app/src/main/res/layout/favorite.xml
+* app/src/main/res/layout/fragmenttab1.xml
+* app/src/main/res/layout/fragmenttab2.xml
+* app/src/main/res/layout/fragmenttab3.xml
+* app/src/main/res/layout/location.xml
+* app/src/main/res/menu-ar/
+* app/src/main/res/menu-ar/menu.xml
+* app/src/main/res/menu-es/
+* app/src/main/res/menu-es/menu.xml
+* app/src/main/res/menu-fr/
+* app/src/main/res/menu-fr/menu.xml
+* app/src/main/res/menu/
+* app/src/main/res/menu/menu.xml
+* app/src/main/res/raw-ar/
+* app/src/main/res/raw-ar/info.txt
+* app/src/main/res/raw-ar/legal.txt
+* app/src/main/res/raw-es/
+* app/src/main/res/raw-es/info.txt
+* app/src/main/res/raw-es/legal.txt
+* app/src/main/res/raw-fr/
+* app/src/main/res/raw-fr/info.txt
+* app/src/main/res/raw-fr/legal.txt
+* app/src/main/res/raw/
+* app/src/main/res/raw/info.txt
+* app/src/main/res/raw/legal.txt
+* app/src/main/res/values-ar/
+* app/src/main/res/values-ar/strings.xml
+* app/src/main/res/values-es/
+* app/src/main/res/values-es/strings.xml
+* app/src/main/res/values-fr/
+* app/src/main/res/values-fr/strings.xml
+* app/src/main/res/values/
+* app/src/main/res/values/strings.xml
+* arrow-15.png
+* build.gradle
+* build.xml
+* gradle/
+* gradle/wrapper/
+* gradle/wrapper/gradle-wrapper.jar
+* gradle/wrapper/gradle-wrapper.properties
+* gradlew
+* gradlew.bat
+* proguard-project.txt
+* settings.gradle
+* url.txt
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

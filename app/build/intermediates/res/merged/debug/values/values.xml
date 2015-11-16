@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/skanderjabouzi/Development/Android/favoriteplace/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="Compass">Compass</string>
+    <string name="about">About this app</string>
+    <string name="app_name">Favorite Place</string>
+    <string name="cityCountry">Please set your options and location</string>
+    <string name="coverMessage">Swipe up to open</string>
+    <string name="detectLocation">Detect Location</string>
+    <string name="distanceTitle">Distance</string>
+    <string name="location">Location</string>
+    <string name="receive_location_notifications_permission_description">Allow this application to receive location notifications from other applications</string>
+    <string name="receive_location_notifications_permission_label">Receive location Notifications</string>
+    <string name="saveLocation">Save Location</string>
+    <string name="saveSettings">Save Settings</string>
+    <string name="savedsucess">Saved Successfully</string>
+    <string name="search">Search</string>
+    <string name="searchLocation">Search Location</string>
+    <string name="send_location_notifications_permission_description">Allow this application to send location notifications to other applications</string>
+    <string name="send_location_notifications_permission_label">Sends location Notifications</string>
+    <string name="settings">Settings</string>
+    <string name="summaryCity">City Name</string>
+    <string name="summaryLatitude">Location Latitude</string>
+    <string name="summaryLongitude">Location Longitude</string>
+    <string name="titleCity">City</string>
+    <string name="titleCountry">Country</string>
+    <string name="titleDegree">Current direction</string>
+    <string name="titleDial">Dial</string>
+    <string name="titleDialDegree">Compass Direction</string>
+    <string name="titleFavoriteTab">My Favorite Place Settings</string>
+    <string name="titleLatitude">Latitude</string>
+    <string name="titleLocation">Location</string>
+    <string name="titleLocationTab">My Location Settings</string>
+    <string name="titleLongitude">Longitude</string>
+    <string name="titleSelectFavorite">Select Your Favorite Place</string>
+    <string name="titleSettings">Settings</string>
+    <string name="titleState">Administrative area</string>
+</resources>

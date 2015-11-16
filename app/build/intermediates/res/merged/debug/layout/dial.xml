@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:id="@+id/dialView" >
+    
+	<TextView 
+		android:id="@+id/favoriteName"
+		android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:singleLine="true"
+		android:textSize="30sp"
+		android:textStyle="bold"
+		android:textColor="#fff"
+		android:text="">
+	</TextView>
+<!--
+	<TextView 
+		android:id="@+id/distanceTitle"
+		android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:singleLine="true"
+		android:textSize="15sp"
+		android:textColor="#fff"
+		android:text="@string/distanceTitle"
+		android:layout_below="@id/favoriteName" >
+	</TextView>
+-->
+	<TextView 
+		android:id="@+id/distanceValue"
+		android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:singleLine="true"
+		android:textSize="15sp"
+		android:textStyle="bold"
+		android:textColor="#fff"
+		android:text=""
+		android:layout_below="@id/favoriteName" >
+	</TextView>
+	
+<!--
+    <TextView
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/tv_text1"
+      android:layout_width="wrap_content"
+      android:layout_height="fill_parent"
+      android:background="#FF505050"
+      android:textSize="20sp"
+      android:textColor="#FFFFFFFF"
+      android:text="Complaint #"
+      android:gravity="center"/>     
+
+    <TextView
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/tv_text2"
+      android:layout_width="wrap_content"
+      android:layout_height="fill_parent"
+      android:background="#FF505050"
+      android:textSize="20sp"
+      android:textColor="#FFFFFFFF"
+      android:layout_toRightOf="@id/tv_text1"
+      android:gravity="center"/>
+-->
+   <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+<!--
+        <ImageView
+        android:id="@+id/cover"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:src="@drawable/cover" />
+-->
+        <ImageView
+        android:id="@+id/dial"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:src="@drawable/compass" />
+<!--
+        <ImageView
+        android:id="@+id/dial1"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_gravity="center"
+        android:src="@drawable/arrow2" />
+-->
+        <ImageView
+        android:id="@+id/dial2"
+        android:layout_width="45dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:src="@drawable/pointer" />
+	</FrameLayout>
+
+    <LinearLayout  android:gravity="bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/linear"
+        android:orientation="vertical" >
+
+
+        <LinearLayout
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView android:layout_width="0dp"
+			  android:layout_height="wrap_content"
+			  android:layout_weight="1"
+			  android:id="@+id/degree_title">
+			</TextView>
+			<TextView android:layout_width="wrap_content"
+			  android:layout_height="wrap_content"
+			  android:id="@+id/dial_degree_title">
+		   </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView android:layout_width="0dp"
+			  android:layout_height="wrap_content"
+			  android:layout_weight="1"
+			  android:textSize="40sp"
+			  android:textStyle="bold"
+			  android:paddingLeft="8px"
+			  android:paddingBottom="8px"
+			  android:textColor="#fff"
+			  android:shadowColor="#000000"
+			  android:shadowDx="1"
+			  android:shadowDy="1"
+			  android:shadowRadius="1"
+			  android:id="@+id/degree">
+			</TextView>
+			<TextView android:layout_width="wrap_content"
+			  android:layout_height="wrap_content"
+			  android:textSize="40sp"
+			  android:textStyle="bold"
+			  android:paddingLeft="8px"
+			  android:paddingBottom="8px"
+			  android:textColor="#7F7F7F"
+			  android:shadowColor="#000000"
+			  android:shadowDx="1"
+			  android:shadowDy="1"
+			  android:shadowRadius="1"
+			  android:id="@+id/dial_degree">
+		   </TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
+<!-- From: file:/Users/skanderjabouzi/Development/Android/favoriteplace/app/src/main/res/layout/dial.xml -->
