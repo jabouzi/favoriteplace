@@ -1,3 +1,0 @@
-Il s'agit d'un logiciel libre distribué sous les termes de 
-la version GNU General Public License 3 
-(http://www.gnu.org/licenses/gpl-3.0.html)

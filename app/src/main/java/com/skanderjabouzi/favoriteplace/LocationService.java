@@ -46,7 +46,7 @@ public class LocationService extends Service implements LocationListener{
 	private final Handler mHandler = new Handler();
 	private Runnable mUpdateTimeTask;
 	private LocationDataSource ldatasource;
-	private com.skanderjabouzi.favoriteplace.Location salatLocation;
+	private com.skanderjabouzi.favoriteplace.Location myLocation;
 	int saveLocation = 0;
 	String receiverSource = "";
     
@@ -165,13 +165,13 @@ public class LocationService extends Service implements LocationListener{
 						locationValues += "|" + Country;
 						if (saveLocation == 1 && receiverSource.equals("NETWORK") )
 						{
-							salatLocation = new com.skanderjabouzi.favoriteplace.Location();
-							salatLocation.setId(1);
-							salatLocation.setLatitude((float)location.getLatitude());
-							salatLocation.setLongitude((float)location.getLongitude());
-							salatLocation.setCity(City);
-							salatLocation.setCountry(Country);
-							ldatasource.updateLocation(salatLocation);
+							myLocation = new com.skanderjabouzi.favoriteplace.Location();
+							myLocation.setId(1);
+							myLocation.setLatitude(String.valueOf(location.getLatitude()));
+							myLocation.setLongitude(String.valueOf(location.getLongitude()));
+							myLocation.setCity(City);
+							myLocation.setCountry(Country);
+							ldatasource.updateLocation(myLocation);
 							Log.i(TAG,"SAVE_LOCATION");
 						}
 						sendNotification(locationValues);

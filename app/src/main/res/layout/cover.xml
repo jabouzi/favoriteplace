@@ -1,28 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" 
-    android:id="@+id/coverView" >
-    <TextView 
-		android:id="@+id/coverMessage"
-		android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:singleLine="true"
-		android:textSize="18sp"
-		android:textStyle="bold"
-		android:textColor="#fff"
-		android:text="@string/coverMessage">
-	</TextView>
-   <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/coverView">
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:layout_margin="12dp">
         <ImageView
-        android:id="@+id/cover"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ornament" />
-	</FrameLayout>
-</RelativeLayout>
+            android:id="@+id/cover"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:src="@drawable/cover"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/LinearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+    </LinearLayout>
+</LinearLayout>

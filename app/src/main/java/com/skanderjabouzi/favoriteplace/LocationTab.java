@@ -94,9 +94,9 @@ public class LocationTab extends Fragment{
     public void setLocationTexts() {
 		
 		latitude = (EditText) rootView.findViewById(R.id.latitude);
-		latitude.setText(fmt(location.getLatitude()));
+		latitude.setText(location.getLatitude());
 		longitude = (EditText) rootView.findViewById(R.id.longitude);
-		longitude.setText(fmt(location.getLongitude()));		
+		longitude.setText(location.getLongitude());
 		city = (EditText) rootView.findViewById(R.id.city);
 		city.setText(location.getCity());
 		country = (EditText) rootView.findViewById(R.id.country);
@@ -113,10 +113,10 @@ public class LocationTab extends Fragment{
 		
 				location.setId(1);
 				latitude = (EditText) rootView.findViewById(R.id.latitude);
-				location.setLatitude(Float.parseFloat(String.valueOf(latitude.getText())));
+				location.setLatitude(String.valueOf(latitude.getText()));
 
 				longitude = (EditText) rootView.findViewById(R.id.longitude);
-				location.setLongitude(Float.parseFloat(String.valueOf(longitude.getText())));
+				location.setLongitude(String.valueOf(longitude.getText()));
 
 				city = (EditText) rootView.findViewById(R.id.city);
 				location.setCity(String.valueOf(city.getText()));
@@ -189,8 +189,8 @@ public class LocationTab extends Fragment{
 			else
 			{
 				String[] geolocation = extraString.split("\\|");
-				location.setLatitude(Float.parseFloat(geolocation[0]));
-				location.setLongitude(Float.parseFloat(geolocation[1]));
+				location.setLatitude(geolocation[0]);
+				location.setLongitude(geolocation[1]);
 				location.setCity(geolocation[2]);
 				location.setCountry(geolocation[3]);
 				setLocationTexts();

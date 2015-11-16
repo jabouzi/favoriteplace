@@ -4,3 +4,9 @@ local.properties
 build.xml
 bin/
 gen/
+app/build
+app.iml
+build.gradle
+.gradle/
+.idea/
+

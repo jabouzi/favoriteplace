@@ -74,12 +74,10 @@ public class DialActivity extends Activity implements SensorEventListener {
 		dialView.setOnTouchListener(onSwipeTouchListener);
         
 		image = (ImageView) findViewById(R.id.dial);
-		//image1 = (ImageView) findViewById(R.id.dial1);
-		image2 = (ImageView) findViewById(R.id.dial2);
-		compassDegree = (TextView) findViewById(R.id.degree);
-		compassDegreeTitle = (TextView) findViewById(R.id.degree_title);
-		dialDegree = (TextView) findViewById(R.id.dial_degree);
-		dialDegreeTitle = (TextView) findViewById(R.id.dial_degree_title);
+		image1 = (ImageView) findViewById(R.id.pointer);
+		image2 = (ImageView) findViewById(R.id.pointer2);
+		compassDegree = (TextView) findViewById(R.id.currentAngleValue);
+		dialDegree = (TextView) findViewById(R.id.favoriteAngleValue);
 		favoriteName = (TextView) findViewById(R.id.favoriteName);
 		distanceValue = (TextView) findViewById(R.id.distanceValue);
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);		
@@ -92,10 +90,10 @@ public class DialActivity extends Activity implements SensorEventListener {
 		directionDegree = (int)getdial();
 		compassDegreeTitle.setText(this.getString(R.string.titleDegree));
 		dialDegreeTitle.setText(this.getString(R.string.titleDialDegree));
-		dialDegree.setText(String.format("%d", (int)directionDegree));
+		dialDegree.setText(String.format("%d", (int) directionDegree));
 		favoriteName.setText(String.format("%s",getFavoriteName()));
 		distanceValue.setText(String.format("%s",getDistance()));
-		//rotate(image2, 0, 0-(int)getdial(), 300);
+		rotate(image2, 0, 0 - (int) getdial(), 300);
 	}
 
 	@Override
@@ -166,7 +164,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 		//if (Math.abs((float)(int)currentDegree - (float)(int)degree) > 1)
 		//{
 			//rotate(image2, (float)(int)currentDegree + (float)(int)directionDegree, (float)(int)degree + (float)(int)directionDegree, 2000);
-			rotate(image2, (float)(int)currentDegree, (float)(int)degree, 1000);
+			rotate(image1, (float)(int)currentDegree, (float)(int)degree, 1000);
 			//Log.i("CURRENTDEGREE : ", String.valueOf((float)(int)currentDegree));
 			//Log.d("DEGREE : ", String.valueOf((float)(int)degree));
 			//Log.i("CURRENTDEGREE 2 : ", String.valueOf((float)(int)currentDegree + (float)(int)directionDegree));

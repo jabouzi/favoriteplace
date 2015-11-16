@@ -22,7 +22,7 @@ public class Favorite implements Serializable{
 		return latitude;
 	}
 
-	public void setLatitude(float latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 
@@ -30,7 +30,7 @@ public class Favorite implements Serializable{
 		return longitude;
 	}
 
-	public void setLongitude(float longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 

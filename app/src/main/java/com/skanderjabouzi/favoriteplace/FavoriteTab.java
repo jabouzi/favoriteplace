@@ -99,9 +99,9 @@ public class FavoriteTab extends Fragment{
     public void setFavoriteTexts() {
 		
 		latitude = (EditText) rootView.findViewById(R.id.latitude);
-		latitude.setText(fmt(favorite.getLatitude()));
+		latitude.setText(favorite.getLatitude());
 		longitude = (EditText) rootView.findViewById(R.id.longitude);
-		longitude.setText(fmt(favorite.getLongitude()));		
+		longitude.setText(favorite.getLongitude());
 		city = (EditText) rootView.findViewById(R.id.city);
 		city.setText(favorite.getCity());
 		country = (EditText) rootView.findViewById(R.id.country);
@@ -118,10 +118,10 @@ public class FavoriteTab extends Fragment{
 		
 				favorite.setId(1);
 				latitude = (EditText) rootView.findViewById(R.id.latitude);
-				favorite.setLatitude(Float.parseFloat(String.valueOf(latitude.getText())));
+				favorite.setLatitude(String.valueOf(latitude.getText()));
 
 				longitude = (EditText) rootView.findViewById(R.id.longitude);
-				favorite.setLongitude(Float.parseFloat(String.valueOf(longitude.getText())));
+				favorite.setLongitude(String.valueOf(longitude.getText()));
 
 				city = (EditText) rootView.findViewById(R.id.city);
 				favorite.setCity(String.valueOf(city.getText()));
@@ -218,8 +218,8 @@ public class FavoriteTab extends Fragment{
 						
 						@Override
 						public void onClick(DialogInterface dialog, int position) {
-							favorite.setLatitude(Float.parseFloat(addresses.get(position)[0]));
-							favorite.setLongitude(Float.parseFloat(addresses.get(position)[1]));
+							favorite.setLatitude(addresses.get(position)[0]);
+							favorite.setLongitude(addresses.get(position)[1]);
 							favorite.setCity(addresses.get(position)[2]);
 							if (addresses.get(position).length > 4) favorite.setCountry(addresses.get(position)[4]);
 							setFavoriteTexts();
@@ -231,8 +231,8 @@ public class FavoriteTab extends Fragment{
 				}
 				else
 				{
-					favorite.setLatitude(Float.parseFloat(addresses.get(0)[0]));
-					favorite.setLongitude(Float.parseFloat(addresses.get(0)[1]));
+					favorite.setLatitude(addresses.get(0)[0]);
+					favorite.setLongitude(addresses.get(0)[1]);
 					favorite.setCity(addresses.get(0)[2]);
 					if (addresses.get(0).length > 4) favorite.setCountry(addresses.get(0)[4]);
 					setFavoriteTexts();
