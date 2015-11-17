@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.graphics.Color;
+import android.text.TextUtils;
 
 public class DialActivity extends Activity implements SensorEventListener {
 
@@ -88,8 +89,6 @@ public class DialActivity extends Activity implements SensorEventListener {
 		fdatasource.open();
 		favorite = fdatasource.getFavorite(1);
 		directionDegree = (int)getdial();
-		compassDegreeTitle.setText(this.getString(R.string.titleDegree));
-		dialDegreeTitle.setText(this.getString(R.string.titleDialDegree));
 		dialDegree.setText(String.format("%d", (int) directionDegree));
 		favoriteName.setText(String.format("%s",getFavoriteName()));
 		distanceValue.setText(String.format("%s",getDistance()));
@@ -191,11 +190,11 @@ public class DialActivity extends Activity implements SensorEventListener {
 	
 	private float getdial()
 	{    
-		final float FLONG = Float.parseFloat(favorite.getLongitude());
-		final float FLAT = Float.parseFloat(favorite.getLatitude());    
-		final float LLONG = Float.parseFloat(favorite.getLongitude());
-		final float LLAT = Float.parseFloat(favorite.getLatitude());    
-		
+		final float FLONG = getFloatValue(favorite.getLongitude());
+		final float FLAT = getFloatValue(favorite.getLatitude());
+		final float LLONG = getFloatValue(favorite.getLongitude());
+		final float LLAT = getFloatValue(favorite.getLatitude());
+
 		float x1 = (float)Math.sin((-LLONG+FLONG)*Math.PI/180f);
 		float y1 = (float)Math.cos(LLAT*Math.PI/180f) * (float)Math.tan(FLAT*Math.PI/180f);
 		float y2 = (float)Math.sin(LLAT*Math.PI/180f) * (float)Math.cos((-LLONG+FLONG)*Math.PI/180f);
@@ -211,11 +210,11 @@ public class DialActivity extends Activity implements SensorEventListener {
 	
 	private String getDistance()
 	{
-		final float FLONG = Float.parseFloat(favorite.getLongitude());
-		final float FLAT = Float.parseFloat(favorite.getLatitude());    
-		final float LLONG = Float.parseFloat(favorite.getLongitude());
-		final float LLAT = Float.parseFloat(favorite.getLatitude()); 
-		
+		final float FLONG = getFloatValue(favorite.getLongitude());
+		final float FLAT = getFloatValue(favorite.getLatitude());
+		final float LLONG = getFloatValue(favorite.getLongitude());
+		final float LLAT = getFloatValue(favorite.getLatitude());
+
 		final float dlon = FLONG - LLONG;
 		final float dlat = FLAT - LLAT;
 		
@@ -246,11 +245,22 @@ public class DialActivity extends Activity implements SensorEventListener {
 			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 		break;
 	  case R.id.about:
-		AboutDialog about = new AboutDialog(this);
-		about.setTitle(this.getString(R.string.about));
-		about.show();
+		  startActivity(new Intent(this, AboutActivity.class)
+				  .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 		break;
 	  }
 	  return true;
+	}
+
+	public float getFloatValue(String str)
+	{
+		if(str != null && !str.isEmpty())
+		{
+			return Float.parseFloat(str);
+		}
+		else
+		{
+			return 0f;
+		}
 	}
 }
