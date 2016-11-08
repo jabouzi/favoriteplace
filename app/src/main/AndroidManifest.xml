@@ -3,7 +3,7 @@
       package="com.skanderjabouzi.favoriteplace"
       android:versionCode="1"
       android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="11" />
+    <uses-sdk android:minSdkVersion="11"/>
     
 	<permission android:name="com.skanderjabouzi.favoriteplace.SEND_LOCATION_NOTIFICATIONS"
 			android:label="@string/send_location_notifications_permission_label"
@@ -49,7 +49,7 @@
 			android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" 
 			android:screenOrientation="portrait" />
     <activity android:name="com.skanderjabouzi.favoriteplace.SettingsActivity" android:label="@string/titleSettings" 
-			android:screenOrientation="portrait" />
+			android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat"/>
  <activity android:name="com.skanderjabouzi.favoriteplace.AboutActivity" android:label="@string/about"
 			android:screenOrientation="portrait" />
 

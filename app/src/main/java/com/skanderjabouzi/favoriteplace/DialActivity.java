@@ -1,6 +1,8 @@
 package com.skanderjabouzi.favoriteplace;
 
 import android.app.Activity;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.view.MotionEvent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -21,6 +23,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.graphics.Color;
 import android.text.TextUtils;
+import android.animation.ObjectAnimator;
+import java.util.ArrayList;
+import android.animation.AnimatorSet;
 
 public class DialActivity extends Activity implements SensorEventListener {
 
@@ -75,7 +80,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 		dialView.setOnTouchListener(onSwipeTouchListener);
         
 		image = (ImageView) findViewById(R.id.dial);
-		image1 = (ImageView) findViewById(R.id.pointer);
+//		image1 = (ImageView) findViewById(R.id.pointer);
 		image2 = (ImageView) findViewById(R.id.pointer2);
 		compassDegree = (TextView) findViewById(R.id.currentAngleValue);
 		dialDegree = (TextView) findViewById(R.id.favoriteAngleValue);
@@ -92,7 +97,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 		dialDegree.setText(String.format("%d", (int) directionDegree));
 		favoriteName.setText(String.format("%s",getFavoriteName()));
 		distanceValue.setText(String.format("%s",getDistance()));
-		rotate(image2, 0, 0 - (int) getdial(), 300);
+//		rotate(image2, 0, 0 - (int) getdial(), 300);
 	}
 
 	@Override
@@ -141,7 +146,8 @@ public class DialActivity extends Activity implements SensorEventListener {
             return super.dispatchTouchEvent(ev);   
     }
 
-	@Override
+	@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+    @Override
 	public void onSensorChanged(SensorEvent event) {
 		float degree = Math.round(event.values[0]);
 		
@@ -163,7 +169,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 		//if (Math.abs((float)(int)currentDegree - (float)(int)degree) > 1)
 		//{
 			//rotate(image2, (float)(int)currentDegree + (float)(int)directionDegree, (float)(int)degree + (float)(int)directionDegree, 2000);
-			rotate(image1, (float)(int)currentDegree, (float)(int)degree, 1000);
+			rotate(image, (float)(int)currentDegree, (float)(int)degree, getdial(), 1000);
 			//Log.i("CURRENTDEGREE : ", String.valueOf((float)(int)currentDegree));
 			//Log.d("DEGREE : ", String.valueOf((float)(int)degree));
 			//Log.i("CURRENTDEGREE 2 : ", String.valueOf((float)(int)currentDegree + (float)(int)directionDegree));
@@ -178,14 +184,20 @@ public class DialActivity extends Activity implements SensorEventListener {
 		Log.d("SENSOR : ", String.valueOf(sensorAccuracy));
 	}
 	
-	private void rotate(ImageView imgview, float currentDegree, float degree, int duration) {
-		RotateAnimation rotateAnim = new RotateAnimation(-currentDegree, degree,
-				RotateAnimation.RELATIVE_TO_SELF, 0.5f,
-				RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+	@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+    private void rotate(ImageView imgview, float currentDegree, float degree, float direction, int duration) {
 
-		rotateAnim.setDuration(duration);
-		rotateAnim.setFillAfter(true);
-		imgview.startAnimation(rotateAnim);
+        ArrayList<ObjectAnimator> arrayListObjectAnimators = new ArrayList<ObjectAnimator>();
+        ObjectAnimator anim1 = ObjectAnimator.ofFloat(image , "rotation", currentDegree, -degree);
+        arrayListObjectAnimators.add(anim1);
+        ObjectAnimator anim2 = ObjectAnimator.ofFloat(image2 , "rotation", currentDegree + direction, -degree + direction);
+        arrayListObjectAnimators.add(anim2);
+
+        ObjectAnimator[] objectAnimators = arrayListObjectAnimators.toArray(new ObjectAnimator[arrayListObjectAnimators.size()]);
+        AnimatorSet animSetXY = new AnimatorSet();
+        animSetXY.playTogether(objectAnimators);
+        animSetXY.setDuration((long) duration);
+        animSetXY.start();
 	}
 	
 	private float getdial()
