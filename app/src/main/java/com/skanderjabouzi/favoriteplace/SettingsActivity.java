@@ -1,31 +1,33 @@
 package com.skanderjabouzi.favoriteplace;
 
-import android.app.ActionBar;
-import android.app.Fragment;
-import android.os.Build;
 import android.os.Bundle;
-import android.app.Activity;
-import android.support.annotation.RequiresApi;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.support.v7.app.AppCompatActivity;
 
-import static android.app.ActionBar.NAVIGATION_MODE_TABS;
-
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends ActionBarActivity {
 	// Declare Tab Variable
-	android.support.v7.app.ActionBar.Tab Tab1;
-    android.support.v7.app.ActionBar.Tab Tab2;
-	Fragment locationTab = new LocationTab();
-	Fragment favoriteTab = new FavoriteTab();
+	ActionBar.Tab Tab1, Tab2;
+	LocationTab locationTab = new LocationTab();
+    FavoriteTab favoriteTab = new FavoriteTab();
 
-	@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        setUpTabs(savedInstanceState);
+    }
 
-		android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //            save the selected tab's index so it's re-selected on orientation change
+        outState.putInt("tabIndex", getSupportActionBar().getSelectedNavigationIndex());
+    }
+
+    private void setUpTabs(Bundle savedInstanceState) {
+		ActionBar actionBar = getSupportActionBar();
 		Log.d("SETTINGS", String.valueOf(actionBar));
 
 		// Hide Actionbar Icon
@@ -35,15 +37,15 @@ public class SettingsActivity extends AppCompatActivity {
 		actionBar.setDisplayShowTitleEnabled(false);
 
 		// Create Actionbar Tabs
-		actionBar.setNavigationMode(NAVIGATION_MODE_TABS);
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// Set Tab Icon and Titles
-		Tab1 = actionBar.newTab().setText(this.getString(R.string.titleLocationTab));
-		Tab2 = actionBar.newTab().setText(this.getString(R.string.titleFavoriteTab));
+        Tab Tab1 = actionBar.newTab().setText(this.getString(R.string.titleLocationTab));
+        Tab Tab2 = actionBar.newTab().setText(this.getString(R.string.titleFavoriteTab));
 
 		// Set Tab Listeners
-		Tab1.setTabListener((android.support.v7.app.ActionBar.TabListener) new TabListener(locationTab));
-		Tab2.setTabListener((android.support.v7.app.ActionBar.TabListener) new TabListener(favoriteTab));
+		Tab1.setTabListener(new TabListener(locationTab));
+		Tab2.setTabListener(new TabListener(favoriteTab));
 
 		// Add tabs to actionbar
 		actionBar.addTab(Tab1);

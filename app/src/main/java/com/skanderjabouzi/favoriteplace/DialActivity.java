@@ -183,7 +183,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 		sensorAccuracy = accuracy;
 		Log.d("SENSOR : ", String.valueOf(sensorAccuracy));
 	}
-	
+
 	@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     private void rotate(ImageView imgview, float currentDegree, float degree, float direction, int duration) {
 
@@ -204,8 +204,8 @@ public class DialActivity extends Activity implements SensorEventListener {
 	{    
 		final float FLONG = getFloatValue(favorite.getLongitude());
 		final float FLAT = getFloatValue(favorite.getLatitude());
-		final float LLONG = getFloatValue(favorite.getLongitude());
-		final float LLAT = getFloatValue(favorite.getLatitude());
+		final float LLONG = getFloatValue(location.getLongitude());
+		final float LLAT = getFloatValue(location.getLatitude());
 
 		float x1 = (float)Math.sin((-LLONG+FLONG)*Math.PI/180f);
 		float y1 = (float)Math.cos(LLAT*Math.PI/180f) * (float)Math.tan(FLAT*Math.PI/180f);
@@ -224,8 +224,8 @@ public class DialActivity extends Activity implements SensorEventListener {
 	{
 		final float FLONG = getFloatValue(favorite.getLongitude());
 		final float FLAT = getFloatValue(favorite.getLatitude());
-		final float LLONG = getFloatValue(favorite.getLongitude());
-		final float LLAT = getFloatValue(favorite.getLatitude());
+		final float LLONG = getFloatValue(location.getLongitude());
+		final float LLAT = getFloatValue(location.getLatitude());
 
 		final float dlon = FLONG - LLONG;
 		final float dlat = FLAT - LLAT;

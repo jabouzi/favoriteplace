@@ -1,10 +1,10 @@
 package com.skanderjabouzi.favoriteplace;
 
 
-import android.app.ActionBar.Tab;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.app.ActionBar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBar.Tab;
 
 public class TabListener implements ActionBar.TabListener {
 
