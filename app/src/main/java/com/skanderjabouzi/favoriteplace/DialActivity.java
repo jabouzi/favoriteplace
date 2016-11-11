@@ -25,6 +25,8 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.animation.ObjectAnimator;
 import java.util.ArrayList;
+import java.util.List;
+
 import android.animation.AnimatorSet;
 
 public class DialActivity extends Activity implements SensorEventListener {
@@ -166,16 +168,25 @@ public class DialActivity extends Activity implements SensorEventListener {
 		}
 		
 		compassDegree.setText(String.format("%d",(int)degree));
-		//if (Math.abs((float)(int)currentDegree - (float)(int)degree) > 1)
-		//{
-			//rotate(image2, (float)(int)currentDegree + (float)(int)directionDegree, (float)(int)degree + (float)(int)directionDegree, 2000);
-			rotate(image, (float)(int)currentDegree, (float)(int)degree, getdial(), 1000);
-			//Log.i("CURRENTDEGREE : ", String.valueOf((float)(int)currentDegree));
-			//Log.d("DEGREE : ", String.valueOf((float)(int)degree));
-			//Log.i("CURRENTDEGREE 2 : ", String.valueOf((float)(int)currentDegree + (float)(int)directionDegree));
-			//Log.d("DEGREE 2 : ", String.valueOf((float)(int)degree + (float)(int)directionDegree));
-			currentDegree = -degree;
-		//}
+		if (Math.abs((int)currentDegree - (int)degree) > 5)
+		{
+            /*List<Integer> ranges = new ArrayList<Integer>();
+            List<Integer> degreesRange = tearDown((int)currentDegree,(int)degree, ranges);
+            Log.d("SENSOR : ", String.valueOf(sensorAccuracy));
+            for (int i = 0; i < degreesRange.size() - 1; i++)
+            {
+
+                rotate(image, -(float)(int)degreesRange.get(i), (float)(int)degreesRange.get(i + 1), getdial(), 1000 + i*1000);
+            }*/
+
+            degree *= -1;
+            rotate(image, (float)(int)currentDegree, (float)(int)degree, getdial(), 2000);
+//			Log.i("CURRENTDEGREE : ", String.valueOf((float)(int)currentDegree));
+//			Log.d("DEGREE : ", String.valueOf((float)(int)degree));
+//            Log.d("DEGREES RANGE : ", String.valueOf(degreesRange));
+			currentDegree = degree;
+
+		}
 	}
 
 	@Override
@@ -187,17 +198,30 @@ public class DialActivity extends Activity implements SensorEventListener {
 	@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     private void rotate(ImageView imgview, float currentDegree, float degree, float direction, int duration) {
 
-        ArrayList<ObjectAnimator> arrayListObjectAnimators = new ArrayList<ObjectAnimator>();
-        ObjectAnimator anim1 = ObjectAnimator.ofFloat(image , "rotation", currentDegree, -degree);
-        arrayListObjectAnimators.add(anim1);
-        ObjectAnimator anim2 = ObjectAnimator.ofFloat(image2 , "rotation", currentDegree + direction, -degree + direction);
-        arrayListObjectAnimators.add(anim2);
+        Log.i("ROTATE CURRENT : ", String.valueOf(currentDegree));
+        Log.d("ROTATE DEGREE : ", String.valueOf(degree));
+        Log.d("ROTATE DURATION : ", String.valueOf(duration));
+        if (Math.abs((int)currentDegree - (int)degree) > 1) {
+            List<Integer> ranges = new ArrayList<Integer>();
+            List<Integer> degreesRange = tearDown((int) currentDegree, (int) degree, ranges);
+            Log.d("SENSOR : ", String.valueOf(sensorAccuracy));
+            Log.d("DEGREES RANGE : ", String.valueOf(degreesRange));
+            for (int i = 0; i < degreesRange.size() - 1; i++) {
+                ArrayList<ObjectAnimator> arrayListObjectAnimators = new ArrayList<ObjectAnimator>();
+                ObjectAnimator anim1 = ObjectAnimator.ofFloat(image, "rotation", (float) (int) degreesRange.get(i), (float) (int) degreesRange.get(i + 1));
+                arrayListObjectAnimators.add(anim1);
+                ObjectAnimator anim2 = ObjectAnimator.ofFloat(image2, "rotation", (float) (int) degreesRange.get(i) + direction, (float) (int) degreesRange.get(i + 1) + direction);
+                arrayListObjectAnimators.add(anim2);
 
-        ObjectAnimator[] objectAnimators = arrayListObjectAnimators.toArray(new ObjectAnimator[arrayListObjectAnimators.size()]);
-        AnimatorSet animSetXY = new AnimatorSet();
-        animSetXY.playTogether(objectAnimators);
-        animSetXY.setDuration((long) duration);
-        animSetXY.start();
+                ObjectAnimator[] objectAnimators = arrayListObjectAnimators.toArray(new ObjectAnimator[arrayListObjectAnimators.size()]);
+                AnimatorSet animSetXY = new AnimatorSet();
+                animSetXY.playTogether(objectAnimators);
+                animSetXY.setDuration((long) duration - i * 100);
+                animSetXY.start();
+//                rotate(image, (float)(int)degreesRange.get(i), (float)(int)degreesRange.get(i + 1), getdial(), 1000 + i*1000);
+            }
+
+        }
 	}
 	
 	private float getdial()
@@ -275,4 +299,20 @@ public class DialActivity extends Activity implements SensorEventListener {
 			return 0f;
 		}
 	}
+
+    public static List<Integer> tearDown(int start, int end, List<Integer> ranges)
+    {
+        ranges.add(start);
+        if (Math.abs(end - start) > 1)
+        {
+
+            tearDown((start + end)/2, end, ranges);
+        }
+        else
+        {
+            ranges.add(end);
+        }
+
+        return ranges;
+    }
 }
