@@ -26,7 +26,7 @@ import android.text.TextUtils;
 import android.animation.ObjectAnimator;
 import java.util.ArrayList;
 import java.util.List;
-
+import android.view.animation.LinearInterpolator;
 import android.animation.AnimatorSet;
 
 public class DialActivity extends Activity implements SensorEventListener {
@@ -216,6 +216,7 @@ public class DialActivity extends Activity implements SensorEventListener {
                 ObjectAnimator[] objectAnimators = arrayListObjectAnimators.toArray(new ObjectAnimator[arrayListObjectAnimators.size()]);
                 AnimatorSet animSetXY = new AnimatorSet();
                 animSetXY.playTogether(objectAnimators);
+                animSetXY.setInterpolator(new LinearInterpolator());
                 animSetXY.setDuration((long) duration - i * 100);
                 animSetXY.start();
 //                rotate(image, (float)(int)degreesRange.get(i), (float)(int)degreesRange.get(i + 1), getdial(), 1000 + i*1000);
