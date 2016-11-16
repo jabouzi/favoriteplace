@@ -2,7 +2,7 @@ package com.skanderjabouzi.favoriteplace;
 
 import android.app.Activity;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+//import android.support.annotation.RequiresApi;
 import android.view.MotionEvent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -148,7 +148,7 @@ public class DialActivity extends Activity implements SensorEventListener {
             return super.dispatchTouchEvent(ev);   
     }
 
-	@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+	//@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
 	public void onSensorChanged(SensorEvent event) {
 		float degree = Math.round(event.values[0]);
@@ -195,7 +195,7 @@ public class DialActivity extends Activity implements SensorEventListener {
 		Log.d("SENSOR : ", String.valueOf(sensorAccuracy));
 	}
 
-	@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+	//@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     private void rotate(ImageView imgview, float currentDegree, float degree, float direction, int duration) {
 
         Log.i("ROTATE CURRENT : ", String.valueOf(currentDegree));
