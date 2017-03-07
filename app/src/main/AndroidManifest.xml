@@ -31,11 +31,11 @@
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
 
-        <activity android:name="com.skanderjabouzi.favoriteplace.Splash"
+        <activity android:name="com.skanderjabouzi.favoriteplace.DialActivity"
                   android:label="@string/app_name"
-                  android:screenOrientation="nosensor"
+                  android:screenOrientation="portrait"
                   android:launchMode="singleTop"
-                  android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -46,11 +46,11 @@
     <activity android:name="com.skanderjabouzi.favoriteplace.CoverActivity" android:label=""
 			android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" 
 			android:screenOrientation="portrait" />
-    <activity android:name="com.skanderjabouzi.favoriteplace.DialActivity" android:label="@string/titleDial"
-			android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
-			android:screenOrientation="portrait" />
+    <!--<activity android:name="com.skanderjabouzi.favoriteplace.DialActivity" android:label="@string/titleDial"-->
+			<!--android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"-->
+			<!--android:screenOrientation="portrait" />-->
     <activity android:name="com.skanderjabouzi.favoriteplace.SettingsActivity" android:label="@string/titleSettings" 
-			android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat"/>
+			android:screenOrientation="portrait" android:theme="@style/Theme.Base.AppCompat.Light"/>
     <activity android:name="com.skanderjabouzi.favoriteplace.AboutActivity" android:label="@string/about"
 			android:screenOrientation="portrait" />
 
