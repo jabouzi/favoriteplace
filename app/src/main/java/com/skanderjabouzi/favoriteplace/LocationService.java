@@ -143,21 +143,21 @@ public class LocationService extends Service implements LocationListener{
 			try {
 					List<Address> addresses = geocoder.getFromLocation(latitude,longitude, 1);
 					if(addresses != null && !addresses.isEmpty()) {
-						//Log.i("GEOLOC", java.util.Arrays.asList(addresses.toArray()).toString());
+						Log.i("GEOLOC", java.util.Arrays.asList(addresses.toArray()).toString());
 						if ( addresses.get(0).getLocality() != null)
 						{
-							//Log.i("CITY", addresses.get(0).getLocality());
+							Log.i("CITY", addresses.get(0).getLocality());
 							City = addresses.get(0).getLocality();
 						}
 						if ( addresses.get(0).getCountryName() != null) 
 						{
-							//Log.i("COUN", addresses.get(0).getCountryName());
+							Log.i("COUN", addresses.get(0).getCountryName());
 							Country = addresses.get(0).getCountryName();
 						}
 						
-						//if ( addresses.get(0).getAdminArea() != null) Log.i("ADMI", addresses.get(0).getAdminArea());
-						//if ( addresses.get(0).getAddressLine(0) != null) Log.i("ADR1", addresses.get(0).getAddressLine(0));
-						//if ( addresses.get(0).getAddressLine(1) != null) Log.i("ADR2", addresses.get(0).getAddressLine(1));
+						if ( addresses.get(0).getAdminArea() != null) Log.i("ADMI", addresses.get(0).getAdminArea());
+						if ( addresses.get(0).getAddressLine(0) != null) Log.i("ADR1", addresses.get(0).getAddressLine(0));
+						if ( addresses.get(0).getAddressLine(1) != null) Log.i("ADR2", addresses.get(0).getAddressLine(1));
 						
 						String locationValues = String.valueOf(location.getLatitude());
 						locationValues += "|" + String.valueOf(location.getLongitude());
@@ -179,7 +179,6 @@ public class LocationService extends Service implements LocationListener{
 					else  Log.i("GEOLOC","No location found..!");
 			} 
 			catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				Toast.makeText(getApplicationContext(),"Could not get address..!", Toast.LENGTH_LONG).show();
 			}
@@ -196,8 +195,8 @@ public class LocationService extends Service implements LocationListener{
 		try {
 				List<Address> addresses = geocoder.getFromLocationName(locationName, 5);
 				if(addresses != null && !addresses.isEmpty()) {
-					//Log.i("GEOLOC", java.util.Arrays.asList(addresses.toArray()).toString());
-					//Log.i("SERACH", locationName);
+					Log.i("GEOLOC", java.util.Arrays.asList(addresses.toArray()).toString());
+					Log.i("SERACH", locationName);
 					String locationValues = "";
 					int index = 0;
 					for(Address i : addresses){
@@ -206,24 +205,24 @@ public class LocationService extends Service implements LocationListener{
 						
 						if ( i.getLocality() != null)
 						{
-							//Log.i("CITY", i.getLocality());
+							Log.i("CITY", i.getLocality());
 							City = i.getLocality();
 						}
 						
 						if ( i.getCountryName() != null) 
 						{
-							//Log.i("COUN", i.getCountryName());
+							Log.i("COUN", i.getCountryName());
 							Country = i.getCountryName();
 						}
 						
 						if ( i.getAdminArea() != null) 
 						{
-							//Log.i("COUN", i.getAdminArea());
+							Log.i("COUN", i.getAdminArea());
 							State = i.getAdminArea();
 						}
 						
-						//Log.i(TAG,"LAT : "+i.getLatitude());
-						//Log.i(TAG,"LON : "+i.getLongitude());
+						Log.i(TAG,"LAT : "+i.getLatitude());
+						Log.i(TAG,"LON : "+i.getLongitude());
 						locationValues += String.valueOf(i.getLatitude());
 						locationValues += "|" + String.valueOf(i.getLongitude());
 						locationValues += "|" + City;

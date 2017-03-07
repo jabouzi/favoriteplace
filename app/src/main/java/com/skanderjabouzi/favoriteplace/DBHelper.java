@@ -37,8 +37,8 @@ public class DBHelper extends SQLiteOpenHelper {
 				"Upgrading database from version " + oldVersion + " to "
 						+ newVersion + ", which will destroy all old data");
 
-		//dBcontext.deleteDatabase("salat.db");
-		//sdb.execSQL("DROP TABLE IF EXISTS options; DROP TABLE IF EXISTS location;");
+		dBcontext.deleteDatabase("salat.db");
+		db.execSQL("DROP TABLE IF EXISTS options; DROP TABLE IF EXISTS location;");
 		onCreate(db);
 	}
 }
