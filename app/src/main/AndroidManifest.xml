@@ -3,7 +3,7 @@
       package="com.skanderjabouzi.favoriteplace"
       android:versionCode="1"
       android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="11"/>
+    <uses-sdk android:minSdkVersion="11"  android:targetSdkVersion="11"/>
     
 	<permission android:name="com.skanderjabouzi.favoriteplace.SEND_LOCATION_NOTIFICATIONS"
 			android:label="@string/send_location_notifications_permission_label"
@@ -34,7 +34,7 @@
                   android:label="@string/app_name"
                   android:screenOrientation="portrait"
                   android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

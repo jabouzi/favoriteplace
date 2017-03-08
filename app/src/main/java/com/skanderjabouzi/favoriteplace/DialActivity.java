@@ -39,7 +39,6 @@ public class DialActivity extends Activity implements SensorEventListener {
 	private int sensorAccuracy;
 	private float currentDegree = 0f;
 	private float directionDegree = 0f;
-	//private float currentDegree2 = 178f;
 	private SensorManager mSensorManager;
 	TextView compassDegree;
 	TextView compassDegreeTitle;
@@ -57,7 +56,8 @@ public class DialActivity extends Activity implements SensorEventListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//startService(new Intent(context, LocationService.class));
+        getActionBar().setDisplayShowHomeEnabled(false);
+        getActionBar().setDisplayShowTitleEnabled(false);
 		setContentView(R.layout.dial);
         dialView = findViewById(R.id.dialView);
         
@@ -73,7 +73,6 @@ public class DialActivity extends Activity implements SensorEventListener {
 
 			}
 			public void onSwipeBottom() {
-				//Toast.makeText(DialActivity.this, "bottom", Toast.LENGTH_SHORT).show();
 				DialActivity.this.startActivity(new Intent(DialActivity.this, CoverActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 				DialActivity.this.finish();
 				DialActivity.this.overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_down);
@@ -82,7 +81,6 @@ public class DialActivity extends Activity implements SensorEventListener {
 		dialView.setOnTouchListener(onSwipeTouchListener);
         
 		image = (ImageView) findViewById(R.id.dial);
-//		image1 = (ImageView) findViewById(R.id.pointer);
 		image2 = (ImageView) findViewById(R.id.pointer2);
 		compassDegree = (TextView) findViewById(R.id.currentAngleValue);
 		dialDegree = (TextView) findViewById(R.id.favoriteAngleValue);
@@ -99,7 +97,6 @@ public class DialActivity extends Activity implements SensorEventListener {
 		dialDegree.setText(String.format("%d", (int) directionDegree));
 		favoriteName.setText(String.format("%s",getFavoriteName()));
 		distanceValue.setText(String.format("%s",getDistance()));
-//		rotate(image2, 0, 0 - (int) getdial(), 300);
 	}
 
 	@Override
@@ -111,11 +108,10 @@ public class DialActivity extends Activity implements SensorEventListener {
 		favoriteName.setText(String.format("%s",getFavoriteName()));
 		distanceValue.setText(String.format("%s",getDistance()));
 	}
-	
+
 	@Override
     protected void onPause() {
         super.onPause();
-        //finish();
         mSensorManager.unregisterListener(this);
     }
     
@@ -123,21 +119,17 @@ public class DialActivity extends Activity implements SensorEventListener {
     protected void onStop() {
         super.onStop();
         if (ldatasource.isOpen()) ldatasource.close();
-        //finish();
-        //mSensorManager.unregisterListener(this);
     }
     
 	@Override
     protected void onDestroy() {
         super.onDestroy();
         if (ldatasource.isOpen()) ldatasource.close();
-        //finish();
-        //mSensorManager.unregisterListener(this);
     }
     
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-          // TODO Auto-generated method stub
+        Log.d("TOU8CH : ", String.valueOf(event));
 		DialActivity.this.openOptionsMenu();
 		return super.onTouchEvent(event);
    }
@@ -148,8 +140,7 @@ public class DialActivity extends Activity implements SensorEventListener {
             return super.dispatchTouchEvent(ev);   
     }
 
-	//@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-    @Override
+	@Override
 	public void onSensorChanged(SensorEvent event) {
 		float degree = Math.round(event.values[0]);
 		
@@ -170,20 +161,10 @@ public class DialActivity extends Activity implements SensorEventListener {
 		compassDegree.setText(String.format("%d",(int)degree));
 		if (Math.abs((int)currentDegree - (int)degree) > 5)
 		{
-            /*List<Integer> ranges = new ArrayList<Integer>();
-            List<Integer> degreesRange = tearDown((int)currentDegree,(int)degree, ranges);
-            Log.d("SENSOR : ", String.valueOf(sensorAccuracy));
-            for (int i = 0; i < degreesRange.size() - 1; i++)
-            {
-
-                rotate(image, -(float)(int)degreesRange.get(i), (float)(int)degreesRange.get(i + 1), getdial(), 1000 + i*1000);
-            }*/
-
             degree *= -1;
             rotate(image, (float)(int)currentDegree, (float)(int)degree, getdial(), 2000);
-//			Log.i("CURRENTDEGREE : ", String.valueOf((float)(int)currentDegree));
-//			Log.d("DEGREE : ", String.valueOf((float)(int)degree));
-//            Log.d("DEGREES RANGE : ", String.valueOf(degreesRange));
+			Log.i("CURRENTDEGREE : ", String.valueOf((float)(int)currentDegree));
+			Log.d("DEGREE : ", String.valueOf((float)(int)degree));
 			currentDegree = degree;
 
 		}
@@ -195,7 +176,6 @@ public class DialActivity extends Activity implements SensorEventListener {
 		Log.d("SENSOR : ", String.valueOf(sensorAccuracy));
 	}
 
-	//@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     private void rotate(ImageView imgview, float currentDegree, float degree, float direction, int duration) {
 
         Log.i("ROTATE CURRENT : ", String.valueOf(currentDegree));
@@ -219,7 +199,6 @@ public class DialActivity extends Activity implements SensorEventListener {
                 animSetXY.setInterpolator(new LinearInterpolator());
                 animSetXY.setDuration((long) duration - i * 100);
                 animSetXY.start();
-//                rotate(image, (float)(int)degreesRange.get(i), (float)(int)degreesRange.get(i + 1), getdial(), 1000 + i*1000);
             }
 
         }
@@ -269,8 +248,11 @@ public class DialActivity extends Activity implements SensorEventListener {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-	  getMenuInflater().inflate(R.menu.menu, menu);
-	  return true;
+//        menu.add(0, ADD_CATEGORY_INDEX, 0, "Add").setIcon(
+//                android.R.drawable.ic_menu_add);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
 	}
 	
 	@Override
